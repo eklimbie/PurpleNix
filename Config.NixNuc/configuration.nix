@@ -469,7 +469,6 @@
   calibre
   dconf-editor
   eyedropper
-  freac
   gimp3-with-plugins
   github-desktop
   gnomeExtensions.caffeine
