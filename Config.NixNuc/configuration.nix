@@ -490,7 +490,6 @@
   picard
   plex-desktop
   protonvpn-gui
-  qbittorrent
   transmission_4-gtk
   signal-desktop
   sound-juicer
