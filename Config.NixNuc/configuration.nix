@@ -105,9 +105,82 @@
       intel-vaapi-driver # Fallback for older hardware
     ];
   };
-  # hardware.bluetooth.enable = true; # Needed for plasma
   services.pcscd.enable = true; # Enable smartcard (CCID) of Yubikey
   #hardware.wooting.enable = true;
+
+  ## Set priority of the network interfaces
+  networking.networkmanager = {
+    ensureProfiles = {
+      profiles = {
+        "PCIE Ethernet" = {
+          connection = {
+            id = "enp114s0-priority";
+            type = "ethernet";
+            interface-name = "enp114s0";
+            autoconnect = true;
+            autoconnect-priority = 100;
+          };
+          ipv4 = {
+            method = "auto";
+            route-metric = 100;
+          };
+          ipv6 = {
+            method = "auto";
+            route-metric = 100;
+          };
+        };
+        "Dock Ethernet" = {
+          connection = {
+            id = "enp0s13f0u1u4-priority";
+            type = "ethernet";
+            interface-name = "enp0s13f0u1u4";
+            autoconnect = true;
+            autoconnect-priority = 90;
+          };
+          ipv4 = {
+            method = "auto";
+            route-metric = 200;
+          };
+          ipv6 = {
+            method = "auto";
+            route-metric = 200;
+          };
+        };
+        "Other Ethernet Adapters" = {
+          connection = {
+            id = "ethernet-default";
+            type = "ethernet";
+            autoconnect = true;
+            autoconnect-priority = 80;
+          };
+          ipv4 = {
+            method = "auto";
+            route-metric = 300;
+          };
+          ipv6 = {
+            method = "auto";
+            route-metric = 300;
+          };
+        };
+        "WiFi" = {
+          connection = {
+            id = "wifi-default";
+            type = "wifi";
+            autoconnect = true;
+            autoconnect-priority = 70;
+          };
+          ipv4 = {
+            method = "auto";
+            route-metric = 600;
+          };
+          ipv6 = {
+            method = "auto";
+            route-metric = 600;
+          };
+        };
+      };
+    };
+  };
 
   ##########
   ## Enable power-optimisations
@@ -471,7 +544,6 @@
     calibre
     dconf-editor
     eyedropper
-    deluge-gtk
     gimp3-with-plugins
     github-desktop
     gnomeExtensions.caffeine
@@ -492,7 +564,6 @@
     plex-desktop
     protonvpn-gui
     qbittorrent
-    transmission_4-gtk
     signal-desktop
     sound-juicer
     soundconverter
