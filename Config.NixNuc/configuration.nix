@@ -218,8 +218,8 @@
       51413 # Transmission
     ];
     allowedUDPPorts = [
-      #137 # SMB/CIFS
-      #138 # SMB/CIFS
+      #137   # SMB/CIFS
+      #138   # SMB/CIFS
       51413 # Transmission
     ];
     # Allow specific interfaces (useful for VMs, containers, or VPNs)
@@ -468,7 +468,6 @@
   gimp3-with-plugins
   github-desktop
   gnomeExtensions.caffeine
-  gnomeExtensions.quake-terminal
   gnomeExtensions.tiling-shell
   gnomeExtensions.vitals
   gnome-tweaks

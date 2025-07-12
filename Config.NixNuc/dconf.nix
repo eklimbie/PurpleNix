@@ -44,18 +44,18 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell" = {
-      enabled-extensions = [ "caffeine@patapon.info" "Vitals@CoreCoding.com" "quake-terminal@diegodario88.github.io" ];
+      enabled-extensions = [ "caffeine@patapon.info" "Vitals@CoreCoding.com" ];
       favorite-apps = [ "firefox.desktop" "io.gitlab.news_flash.NewsFlash.desktop" "org.gnome.Geary.desktop" "org.gnome.Calendar.desktop" "obsidian.desktop" "io.github.nokse22.HighTide.desktop" "org.gnome.Nautilus.desktop" ];
       welcome-dialog-last-shown-version = "48.1";
     };
-
-    "org/gnome/shell/extensions/quake-terminal" = {
-      animation-time = 150;
-      horizontal-size = 50;
-      terminal-id = "org.gnome.Console.desktop";
-      vertical-size = 50;
-    };
     
+    "org/gnome/shell/extensions/caffeine" = {
+      duration-timer = 2;
+      duration-timer-list = [ 900 1800 3600 ];
+      enable-fullscreen = true;
+      enable-mpris = true;
+    };
+
     "org/gnome/shell/extensions/vitals" = {
       hot-sensors = [ "_processor_usage_" "_memory_usage_" "_system_load_5m_" "__network-rx_max__" ];
       icon-style = 1;
