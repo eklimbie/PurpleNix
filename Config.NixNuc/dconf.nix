@@ -4,7 +4,7 @@
 
 { lib, ... }:
 
-with lib.hm.gvariant;
+with lib.hm.gvariant; # Removes the need to use this prefix everytime
 
 {
   dconf.settings = {
@@ -22,7 +22,7 @@ with lib.hm.gvariant;
     "org/gnome/desktop/peripherals/mouse" = {
       accel-profile = "flat";
     };
-    
+
     "org/gnome/gnome-system-monitor" = {
       cpu-smooth-graph = true;
       cpu-stacked-area-chart = false;
@@ -37,27 +37,49 @@ with lib.hm.gvariant;
       show-dependencies = true;
       show-whose-processes = "user";
     };
-    
+
     "org/gnome/settings-daemon/plugins/color" = {
       night-light-enabled = true;
       night-light-schedule-automatic = true;
     };
 
     "org/gnome/shell" = {
-      enabled-extensions = [ "caffeine@patapon.info" "Vitals@CoreCoding.com" ];
-      favorite-apps = [ "firefox.desktop" "io.gitlab.news_flash.NewsFlash.desktop" "org.gnome.Geary.desktop" "org.gnome.Calendar.desktop" "obsidian.desktop" "io.github.nokse22.HighTide.desktop" "org.gnome.Nautilus.desktop" ];
+      enabled-extensions = [
+        "caffeine@patapon.info"
+        "Vitals@CoreCoding.com"
+      ];
+      favorite-apps = [
+        "firefox.desktop"
+        "io.gitlab.news_flash.NewsFlash.desktop"
+        "org.gnome.Geary.desktop"
+        "org.gnome.Calendar.desktop"
+        "obsidian.desktop"
+        "io.github.nokse22.HighTide.desktop"
+        "code.desktop"
+        "org.gnome.Console.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
       welcome-dialog-last-shown-version = "48.1";
     };
-    
+
     "org/gnome/shell/extensions/caffeine" = {
       duration-timer = 2;
-      duration-timer-list = [ 900 1800 3600 ];
+      duration-timer-list = [
+        900
+        1800
+        3600
+      ];
       enable-fullscreen = true;
       enable-mpris = true;
     };
 
     "org/gnome/shell/extensions/vitals" = {
-      hot-sensors = [ "_processor_usage_" "_memory_usage_" "_system_load_5m_" "__network-rx_max__" ];
+      hot-sensors = [
+        "_processor_usage_"
+        "_memory_usage_"
+        "_system_load_5m_"
+        "__network-rx_max__"
+      ];
       icon-style = 1;
       memory-measurement = 0;
       menu-centered = false;
