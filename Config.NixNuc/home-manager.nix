@@ -69,6 +69,7 @@ in
           gpgsign = true;
         };
         user = {
+          # Github Public Signing 
           signingKey = "key::ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/4AMKL3PIKr1GLOlR44L85uuY+JmGVt15KOom0BipJ";
         };
         # URL rewriting - automatically use SSH instead of https for GitHub

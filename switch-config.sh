@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 0.9, Copyright 2025.
+# Version 1.0, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -20,7 +20,7 @@
 ## Set variables
 machine=$(hostname)
 configpath=$HOME/GitHub/PurpleNix/Config.$(hostname)/
-generation="Gen_$(basename "$(readlink /nix/var/nix/profiles/system)" | cut -d- -f2)"
+generation="$(basename "$(readlink /nix/var/nix/profiles/system)" | cut -d- -f2)"
 
 ## Check if Config folder exists
 # To be added
@@ -33,11 +33,13 @@ sudo nixos-rebuild switch -I nixos-config=${configpath}/configuration.nix
 popd
 
 ## Copy the new config to the system config folder
+echo "Copying the configuration to the system config folder..."
 sudo cp ${configpath}/* /etc/nixos/
 
 ## Add updated config to GitHub repository
+echo "Committing the updated configuration to the repository..."
 git add ${configpath}/*
-git commit -m "Updated ${machine} NixOS configuration to generation ${generation}."
+git commit -m "Updated ${machine} NixOS configuration to generation ${generation}"
 git push
 
 ## Return to directory you ran the script from

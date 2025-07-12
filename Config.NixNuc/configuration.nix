@@ -213,12 +213,14 @@
     enable = true;
     allowPing = true;
     allowedTCPPorts = [
-      #139 # SMB/CIFS
-      #445 # SMB/CIFS
+      #139   # SMB/CIFS
+      #445   # SMB/CIFS
+      51413 # Transmission
     ];
     allowedUDPPorts = [
       #137 # SMB/CIFS
       #138 # SMB/CIFS
+      51413 # Transmission
     ];
     # Allow specific interfaces (useful for VMs, containers, or VPNs)
     trustedInterfaces = [
@@ -247,10 +249,6 @@
       # iptables -A nixos-fw -p udp --dport 137:138 -j nixos-fw-accept
       # iptables -A nixos-fw -p tcp --dport 139 -j nixos-fw-accept
       # iptables -A nixos-fw -p tcp --dport 445 -j nixos-fw-accept
-
-      # Transmission client
-      iptables -A nixos-fw -p tcp --dport 51413 -j nixos-fw-accept
-      iptables -A nixos-fw -p udp --dport 51413 -j nixos-fw-accept
 
       # Add libvirt-specific rules
       # Allow forwarding for libvirt networks
@@ -440,8 +438,6 @@
   flac
   geekbench
   ghostscript
-  git-crypt
-  gnupg
   hunspell
   hunspellDicts.de_DE
   hunspellDicts.en_GB-large
