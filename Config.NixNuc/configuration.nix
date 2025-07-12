@@ -226,12 +226,12 @@
     allowedTCPPorts = [
       #139   # SMB/CIFS
       #445   # SMB/CIFS
-      51413 # Transmission
+      51047 # Transmission
     ];
     allowedUDPPorts = [
       #137   # SMB/CIFS
       #138   # SMB/CIFS
-      51413 # Transmission
+      51047 # Transmission
     ];
     # Allow specific interfaces (useful for VMs, containers, or VPNs)
     trustedInterfaces = [
@@ -471,6 +471,7 @@
     calibre
     dconf-editor
     eyedropper
+    deluge-gtk
     gimp3-with-plugins
     github-desktop
     gnomeExtensions.caffeine
@@ -480,7 +481,6 @@
     google-chrome
     gparted
     handbrake
-    hardinfo2
     high-tide
     impression
     libreoffice-fresh
@@ -491,9 +491,9 @@
     picard
     plex-desktop
     protonvpn-gui
+    qbittorrent
     transmission_4-gtk
     signal-desktop
-    sniffnet
     sound-juicer
     soundconverter
     tor-browser
