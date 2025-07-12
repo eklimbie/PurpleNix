@@ -473,6 +473,7 @@
     gimp3-with-plugins
     github-desktop
     gnomeExtensions.caffeine
+    gnomeExtensions.night-theme-switcher
     gnomeExtensions.tiling-shell
     gnomeExtensions.vitals
     gnome-tweaks
