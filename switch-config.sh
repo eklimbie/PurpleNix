@@ -26,11 +26,10 @@ generation="$(basename "$(readlink /nix/var/nix/profiles/system)" | cut -d- -f2)
 # To be added
 
 ## Set Working directory
-pushd ~/GitHub/PurpleNix
+pushd ~/GitHub/PurpleNix/
 
 ## Switch the system to the new config and make it bootable
 sudo nixos-rebuild switch -I nixos-config=${configpath}/configuration.nix
-popd
 
 ## Copy the new config to the system config folder
 echo "Copying the configuration to the system config folder..."
