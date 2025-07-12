@@ -2,5 +2,9 @@
 result
 result-*
 
+# Mac Specific
+.DS_Store
+**/.DS_Store
+
 # Ignore automatically generated direnv output
 .direnv
