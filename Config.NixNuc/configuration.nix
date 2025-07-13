@@ -135,7 +135,7 @@
     login.u2fAuth = true; # Physical login
     sudo.u2fAuth = true; # Sudo commands
     polkit-1.u2fAuth = true; # GUI admin prompts
-    gdm.u2fAuth = true; # If using GNOME (you mentioned Plasma)
+    # gdm.u2fAuth = true; # If using GNOME, but does not unlock the Gnome keyring so kinda useless. 
     # sddm.u2fAuth = true;     # For Plasma login
   };
 
