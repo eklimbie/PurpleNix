@@ -128,7 +128,7 @@
 
   # Enable U2F for specific services
   security.pam.services = {
-    login.u2fAuth = true; # Physical TTY login
+    # login.u2fAuth = true; # Physical TTY login
     sudo.u2fAuth = true; # Sudo commands
     polkit-1.u2fAuth = true; # GUI admin prompts
     # gdm.u2fAuth = true; # For Gnome login
