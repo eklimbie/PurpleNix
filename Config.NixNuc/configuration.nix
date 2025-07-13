@@ -514,19 +514,24 @@
     newsflash
     obsidian
     picard
-    planify
     plex-desktop
     protonvpn-gui
     signal-desktop
     sound-juicer
     soundconverter
-    super-productivity
     tor-browser
     transmission_4-gtk
     typora
     vlc
     vscode
     yubioath-flutter
+
+    # Things replacement candidates:
+    planify
+    super-productivity
+    ticktick
+    todoist-electron
+
   ];
 
   ## Some software needs additional configuration to function fully.
