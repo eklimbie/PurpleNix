@@ -44,9 +44,10 @@
   ## Updated LUKS Configuration for TPM
   # REPLACE your existing boot.initrd.luks.devices."enc" section with this:
   boot.initrd.luks.devices."enc" = {
-    device = "/dev/disk/by-uuid/156b8615-d2e7-4e04-b8ff-a9c89d07b666";
-    # IMPORTANT: Always keep password fallback
-    #fallbackToPassword = true;
+    #device = "/dev/disk/by-uuid/156b8615-d2e7-4e04-b8ff-a9c89d07b666";
+    device = "/dev/disk/by-partlabel/system";
+    # IMPORTANT: Always keep password fallback. Gives error if enabled, according to nixos-rebuild it is implied in my current config.
+    # fallbackToPassword = true;
     # Allow discards for SSD performance
     allowDiscards = true;
   };
@@ -108,9 +109,8 @@
   #hardware.wooting.enable = true;
 
   ## Yubikey login and sudo support
-  # Make sure to create an authorisation mapping for your yubikey, see
-  # https://nixos.wiki/wiki/Yubikey for instructions.
-
+  # Make sure to create an authorisation mapping for your yubikey and add to
+  # the home-manager config.
   services.pcscd.enable = true; # Enable smartcard (CCID) of Yubikey
 
   # Enable U2F PAM support
@@ -405,7 +405,7 @@
     extraGroups = [
       "libvirtd" # Enable use of virtual machines
       "networkmanager" # Default
-      "tss" # Gives access to TPM devices
+      # "tss" # Gives access to TPM devices without sudo
       "wheel" # Allows sudo
     ];
     packages = with pkgs; [

@@ -33,7 +33,8 @@
     options = [ "subvol=nixos" ];
   };
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-uuid/156b8615-d2e7-4e04-b8ff-a9c89d07b666";
+  boot.initrd.luks.devices."enc".device = "/dev/disk/by-partlabel/system";
+  # device = "/dev/disk/by-uuid/156b8615-d2e7-4e04-b8ff-a9c89d07b666";
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/f7dfa9f6-109e-49bc-999f-9f93b88e7091";

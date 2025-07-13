@@ -39,6 +39,9 @@ in
         # Primary - Blue Yubikey 5 NFC UCB-C
         ewout:UnincKF8YkDJBPTV3BfBOAFoMlZ4trK5KiEdfEqZWT5V+crFYqseH+t+ZihhYJXHVpETOoLbkncGMddw+r/0jQ==,kRL2uY22j1VfZNOQREh4ika6hj35oJG4GtD1A0o2wKk5gPhZjY0oeIyC2uq5NVZOfxofEk9Csvzi6BWUEx2bOg==,es256,+presence
         # Secondary Yubikeys
+        # Add them by inserting the yubikey you want to add and executing
+        # "pamu2fcfg" in the command line. Add the output below. 
+        # See https://nixos.wiki/wiki/Yubikey for Detailed instructions.
       '';
 
       ##########
