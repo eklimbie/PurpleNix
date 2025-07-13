@@ -19,6 +19,10 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       remove-old-trash-files = false;
     };
 
+    "org/gnome/desktop/interface" = {
+      enable-hot-corners = false;
+    };
+
     "org/gnome/desktop/peripherals/mouse" = {
       accel-profile = "flat";
     };
@@ -47,6 +51,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       enabled-extensions = [
         "caffeine@patapon.info"
         "Vitals@CoreCoding.com"
+        "nightthemeswitcher@romainvigier.fr"
       ];
       favorite-apps = [
         "firefox.desktop"

@@ -490,11 +490,11 @@
     picard
     plex-desktop
     protonvpn-gui
-    qbittorrent
     signal-desktop
     sound-juicer
     soundconverter
     tor-browser
+    transmission_4-gtk
     typora
     vlc
     vscode
