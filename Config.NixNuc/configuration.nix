@@ -132,8 +132,8 @@
     sudo.u2fAuth = true; # Sudo commands
     polkit-1.u2fAuth = true; # GUI admin prompts
     gdm.u2fAuth = false; # For Gnome GDM login
-    gdm-password.u2fAuth = false; # Gnome GDM password service
-    gdm-fingerprint.u2fAuth = false; # Gnome GDM fingerprint
+    # gdm-password.u2fAuth = false; # Gnome GDM password service
+    # gdm-fingerprint.u2fAuth = false; # Gnome GDM fingerprint
   };
 
   ## Enable power-optimisations
