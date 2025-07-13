@@ -131,7 +131,7 @@
     login.u2fAuth = true; # Physical TTY login
     sudo.u2fAuth = true; # Sudo commands
     polkit-1.u2fAuth = true; # GUI admin prompts
-    gdm.u2fAuth = true; # For Gnome GDM login
+    gdm.u2fAuth = false; # For Gnome GDM login
     gdm-password.u2fAuth = false; # Gnome GDM password service
     gdm-fingerprint.u2fAuth = false; # Gnome GDM fingerprint
   };
