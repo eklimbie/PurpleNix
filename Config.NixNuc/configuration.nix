@@ -132,7 +132,7 @@
     sudo.u2fAuth = true; # Sudo commands
     polkit-1.u2fAuth = true; # GUI admin prompts
     gdm.u2fAuth = lib.mkForce false; # For Gnome GDM login
-    gdm-password.u2fAuth = false; # Gnome GDM password service
+    gdm-password.u2fAuth = lib.mkForce false; # Gnome GDM password service
     gdm-fingerprint.u2fAuth = false; # Gnome GDM fingerprint
   };
 
