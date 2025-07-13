@@ -469,6 +469,7 @@
     # GUI Applications
     calibre
     dconf-editor
+    deluge
     eyedropper
     gimp3-with-plugins
     github-desktop
