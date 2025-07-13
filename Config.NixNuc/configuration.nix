@@ -514,11 +514,13 @@
     newsflash
     obsidian
     picard
+    planify
     plex-desktop
     protonvpn-gui
     signal-desktop
     sound-juicer
     soundconverter
+    super-productivity
     tor-browser
     transmission_4-gtk
     typora
