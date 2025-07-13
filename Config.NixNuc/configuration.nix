@@ -42,9 +42,8 @@
 
   ##########
   ## Updated LUKS Configuration for TPM
-  # REPLACE your existing boot.initrd.luks.devices."enc" section with this:
+  # Copy this over your existing boot.initrd.luks.devices."enc" in your hadware-configuration.nix:
   boot.initrd.luks.devices."enc" = {
-    #device = "/dev/disk/by-uuid/156b8615-d2e7-4e04-b8ff-a9c89d07b666";
     device = "/dev/disk/by-partlabel/system";
     # IMPORTANT: Always keep password fallback. Gives error if enabled, according to nixos-rebuild it is implied in my current config.
     # fallbackToPassword = true;

@@ -107,7 +107,7 @@ in
       '';
 
       ##########
-      ## Autostart applications
+      ## User Systemd Services
       systemd.user.services = {
         # Automatically start input-remapper so that it works if I set-up a config
         input-remapper-autostart = {

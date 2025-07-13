@@ -33,8 +33,13 @@
     options = [ "subvol=nixos" ];
   };
 
-  boot.initrd.luks.devices."enc".device = "/dev/disk/by-partlabel/system";
-  # device = "/dev/disk/by-uuid/156b8615-d2e7-4e04-b8ff-a9c89d07b666";
+  boot.initrd.luks.devices."enc" = {
+    device = "/dev/disk/by-partlabel/system";
+    # IMPORTANT: Always keep password fallback. Gives error if enabled, according to nixos-rebuild it is implied in my current config.
+    # fallbackToPassword = true;
+    # Allow discards for SSD performance
+    allowDiscards = true;
+  };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/f7dfa9f6-109e-49bc-999f-9f93b88e7091";
@@ -56,7 +61,6 @@
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-partlabel/boot";
-    # device = "/dev/disk/by-uuid/8F2E-F601";
     fsType = "vfat";
     options = [
       "fmask=0077"
