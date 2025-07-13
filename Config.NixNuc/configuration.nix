@@ -122,12 +122,8 @@
     # "required" = Yubikey AND password needed
     control = "sufficient";
 
-    # Optional: Require user interaction (touch)
-    settings = {
-      cue = true; # Show "Please touch the device" message
-      # interactive = true;  # Force interactive mode
-      # debug = true;  # Enable debug logs (disable in production)
-    };
+    # Show "Please touch the device" message
+    settings.cue = true;
   };
 
   # Enable U2F for specific services
@@ -135,7 +131,7 @@
     login.u2fAuth = true; # Physical TTY login
     sudo.u2fAuth = true; # Sudo commands
     polkit-1.u2fAuth = true; # GUI admin prompts
-    # gdm.u2fAuth = true; # For Gnome login DISABLED to prevent keyring issues
+    gdm.u2fAuth = true; # For Gnome login DISABLED to prevent keyring issues
   };
 
   ## Enable power-optimisations
