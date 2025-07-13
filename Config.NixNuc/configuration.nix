@@ -105,10 +105,40 @@
       intel-vaapi-driver # Fallback for older hardware
     ];
   };
-  services.pcscd.enable = true; # Enable smartcard (CCID) of Yubikey
   #hardware.wooting.enable = true;
 
-  ##########
+  ## Yubikey login and sudo support
+  # Make sure to create an authorisation mapping for your yubikey, see
+  # https://nixos.wiki/wiki/Yubikey for instructions.
+
+  services.pcscd.enable = true; # Enable smartcard (CCID) of Yubikey
+
+  # Enable U2F PAM support
+  security.pam.u2f = {
+    enable = true;
+
+    # Choose authentication mode:
+    # "sufficient" = Yubikey OR password works
+    # "required" = Yubikey AND password needed
+    control = "sufficient";
+
+    # Optional: Require user interaction (touch)
+    settings = {
+      cue = true; # Show "Please touch the device" message
+      # interactive = true;  # Force interactive mode
+      # debug = true;  # Enable debug logs (disable in production)
+    };
+  };
+
+  # Enable U2F for specific services
+  security.pam.services = {
+    login.u2fAuth = true; # Physical login
+    sudo.u2fAuth = true; # Sudo commands
+    polkit-1.u2fAuth = true; # GUI admin prompts
+    gdm.u2fAuth = true; # If using GNOME (you mentioned Plasma)
+    # sddm.u2fAuth = true;     # For Plasma login
+  };
+
   ## Enable power-optimisations
   # Basic config
   powerManagement.enable = true; # Basic NixOS set-up compatible with fancier stuff.
@@ -463,7 +493,6 @@
     usbutils # To get information about usb devices
     wget
     yubikey-manager
-    yubikey-personalization
     yt-dlp
     virtiofsd
 

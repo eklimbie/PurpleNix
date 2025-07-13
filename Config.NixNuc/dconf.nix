@@ -47,6 +47,12 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       night-light-schedule-automatic = true;
     };
 
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+      binding = "<Super>Return";
+      command = "kgx";
+      name = "Open Console";
+    };
+
     "org/gnome/shell" = {
       enabled-extensions = [
         "caffeine@patapon.info"
