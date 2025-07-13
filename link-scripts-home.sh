@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.0, Copyright 2025.
+# Version 1.1, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -23,4 +23,4 @@ scriptpath=$HOME/GitHub/PurpleNix/
 ## Link scripts to home folder
 ln -s ${scriptpath}/switch-config.sh $HOME/switch-config.sh
 ln -s ${scriptpath}/test-config.sh $HOME/test-config.sh
-ln -s ${scriptpath}/update-config.sh $HOME/update-config.sh
+ln -s ${scriptpath}/update-check.sh $HOME/update-check.sh

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.0, Copyright 2025.
+# Version 1.1, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -17,6 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
-## Update the Nix Stores
-nix-channel --update
-sudo nix-channel --update
+# Set variables
+machine=$(hostname)
+
+## Set Working directory
+pushd ~/GitHub/PurpleNix/
+
+## Test the new system config but don't make it bootable
+sudo nixos-rebuild dry-run -I nixos-config=./Config.${machine}/configuration.nix --upgrade
+echo "Run \"./switch-config.sh\" to install available updates"
+
+
+## Check for LVFS firmware updates
+fwupdmgr refresh --force
+fwupdmgr get-updates
+echo "Run \"fwupdmgr update\" to install available updates"
+
+## Return to directory you ran the script from
+popd
