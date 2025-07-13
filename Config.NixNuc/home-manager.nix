@@ -32,6 +32,16 @@ in
       ];
 
       ##########
+      ## Yubikey Registration
+      # Create the U2F keys file and use xdg.configFile for XDG compliance
+      # This automatically creates ~/.config/Yubico/u2f_keys
+      xdg.configFile."Yubico/u2f_keys".text = ''
+        # Primary - Blue Yubikey 5 NFC UCB-C
+        ewout:UnincKF8YkDJBPTV3BfBOAFoMlZ4trK5KiEdfEqZWT5V+crFYqseH+t+ZihhYJXHVpETOoLbkncGMddw+r/0jQ==,kRL2uY22j1VfZNOQREh4ika6hj35oJG4GtD1A0o2wKk5gPhZjY0oeIyC2uq5NVZOfxofEk9Csvzi6BWUEx2bOg==,es256,+presence
+        # Secondary Yubikeys
+      '';
+
+      ##########
       ## 1Password Set-up
       # Configure bash to export SSH_AUTH_SOCK
       programs.bash = {
