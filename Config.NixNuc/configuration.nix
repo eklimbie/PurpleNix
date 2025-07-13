@@ -463,13 +463,13 @@
     usbutils # To get information about usb devices
     wget
     yubikey-manager
+    yubikey-personalization
     yt-dlp
     virtiofsd
 
     # GUI Applications
     calibre
     dconf-editor
-    deluge
     eyedropper
     gimp3-with-plugins
     github-desktop
