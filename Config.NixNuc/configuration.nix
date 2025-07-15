@@ -414,6 +414,7 @@
     eyedropper
     gimp3-with-plugins
     github-desktop
+    gnomeExtensions.airpod-battery-monitor
     gnomeExtensions.caffeine
     gnomeExtensions.night-theme-switcher
     gnomeExtensions.tiling-shell
