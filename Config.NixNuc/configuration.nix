@@ -431,6 +431,7 @@
     picard
     plex-desktop
     protonvpn-gui
+    resources
     signal-desktop
     sound-juicer
     soundconverter
