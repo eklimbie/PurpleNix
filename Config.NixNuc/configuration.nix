@@ -13,6 +13,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # Include the optimisations specific to the machine.
+    ./nixnuc-configuration.nix
 
     # NixOS has dedicated custom fixes for some hardware. You can enble that
     # by adding the hardware channel and then adding the specific device as a
@@ -34,6 +36,10 @@
     enable = true;
     pkcs11.enable = true; # For PKCS#11 integration if needed later
     tctiEnvironment.enable = true; # For userspace TPM access
+  };
+  # Configure TPM tools to use kernel resource manager by default
+  environment.sessionVariables = {
+    TPM2TOOLS_TCTI = "device:/dev/tpmrm0";
   };
 
   # Enable systemd in initrd (REQUIRED for TPM unlocking)
@@ -96,16 +102,6 @@
 
   ##########
   ## Hardware set-up and config
-  # Enable intel QuickSync for hardware video decoding
-  hardware.graphics = {
-    enable = true; # Usually already enabled by DE
-    extraPackages = with pkgs; [
-      # your Open GL, Vulkan and VAAPI drivers
-      intel-media-driver # Correct driver for anything broadwell (Core i 5xxx) or later
-      intel-vaapi-driver # Fallback for older hardware
-    ];
-  };
-  #hardware.wooting.enable = true;
 
   ## Yubikey login and sudo support
   # Make sure to create an authorisation mapping for your yubikey and add to
@@ -135,70 +131,6 @@
     # gdm-fingerprint.u2fAuth = false; # Gnome GDM fingerprint
   };
 
-  ## Enable power-optimisations
-  # Basic config
-  powerManagement.enable = true; # Basic NixOS set-up compatible with fancier stuff.
-  powerManagement.powertop.enable = false; # Powertop will make everything laggy, keep turned off.
-  networking.networkmanager.wifi.powersave = true; # Enable power-saving on wifi chip.
-
-  # Intel specific tweaks
-  services.thermald.enable = true; # Proactively prevents overheating on Intel CPUs and works well with other tools.
-  boot.kernelParams = [
-    # Intel P-State configuration
-    "intel_pstate=active" # Use Intel's hardware frequency control
-    # Intel graphics power management
-    "i915.enable_rc6=1" # Enable render context 6 (deepest GPU sleep)
-    "i915.enable_fbc=1" # Enable framebuffer compression
-    "i915.enable_psr=1" # Enable panel self refresh
-    # CPU power management
-    "intel_idle.max_cstate=9" # Allow deepest CPU sleep states
-    #"processor.max_cstate=9"         # Alternative C-state setting for compatibility
-  ];
-
-  # Enable TLP
-  services.power-profiles-daemon.enable = false; # needs to be disabled for tlp to function
-  services.tlp = {
-    enable = true;
-    settings = {
-      DISK_DEVICES = "nvme0n1";
-
-      AHCI_RUNTIME_PM_ON_AC = "auto";
-      NMI_WATCHDOG = 0;
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_BOOST_ON_AC = 1;
-      CPU_HWP_DYN_BOOST_ON_AC = 1;
-
-      # Network power management - automatic WiFi/LAN switching
-      #DEVICES_TO_DISABLE_ON_LAN_CONNECT = "wifi";
-      #DEVICES_TO_ENABLE_ON_LAN_DISCONNECT = "wifi";
-
-      RUNTIME_PM_ON_AC = "auto";
-
-      # Comprehensive USB input device protection
-      USB_EXCLUDE_HID = 1; # Covers most input devices
-      USB_EXCLUDE_HUB = 1; # Prevents hub disconnections
-      USB_EXCLUDE_BTUSB = 1; # Bluetooth adapters
-      USB_EXCLUDE_PHONE = 1; # Mobile devices
-
-      # Specific devices that might not be covered by HID
-      # USB_DENYLIST = "046d:c547 046d:c548"; # Logitech USB dongles
-    };
-  };
-  # Workaround for Intel Ethernet I225-V disappearing after suspend.
-  # The solution is to restart the driver, as per: https://askubuntu.com/questions/1545459/network-interface-disappears-after-suspend-on-ubuntu-24-04-with-intel-igc-driver
-  systemd.services.igc-enable = {
-    description = "Reload the Intel Ethernet I225-V kernel mod after suspend, to fix issue with tlp.";
-    wantedBy = [ "post-resume.target" ];
-    after = [ "post-resume.target" ];
-    script = ''
-      /run/current-system/sw/bin/modprobe -r igc
-      /run/current-system/sw/bin/modprobe igc
-    '';
-    serviceConfig.Type = "oneshot";
-  };
-
   ##########
   ## Network Set-up
   # Configure network proxy if necessary
@@ -207,7 +139,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.hostName = "NixNuc"; # Define your host name.
 
   ## Enable Encrypted DNS
   # Enable systemd-resolved for DNS management
@@ -285,24 +216,6 @@
       # iptables -A nixos-fw -p udp --dport 137:138 -j nixos-fw-accept
       # iptables -A nixos-fw -p tcp --dport 139 -j nixos-fw-accept
       # iptables -A nixos-fw -p tcp --dport 445 -j nixos-fw-accept
-
-      # Add libvirt-specific rules
-      # Allow forwarding for libvirt networks
-      iptables -I FORWARD -m physdev --physdev-is-bridged -j ACCEPT
-      iptables -A nixos-fw -m conntrack --ctstate RELATED,ESTABLISHED -j nixos-fw-accept
-
-      # Allow DHCP for VMs
-      iptables -A nixos-fw -i virbr0 -p udp --dport 67 -j nixos-fw-accept
-      iptables -A nixos-fw -i virbr0 -p tcp --dport 67 -j nixos-fw-accept
-
-      # Allow DNS for VMs
-      iptables -A nixos-fw -i virbr0 -p udp --dport 53 -j nixos-fw-accept
-      iptables -A nixos-fw -i virbr0 -p tcp --dport 53 -j nixos-fw-accept
-
-      # Allow libvirt network ranges
-      iptables -A nixos-fw -s 192.168.122.0/24 -j nixos-fw-accept
-      iptables -A nixos-fw -d 192.168.122.0/24 -j nixos-fw-accept
-
     '';
   };
 
@@ -341,7 +254,7 @@
   # services.displayManager.sddm.enable = true;
   # services.desktopManager.plasma6.enable = true; # this will enable me to also use KDE alongside Gnome
 
-  # Enable the X11 windowing system, with Gnome and fractional scaling.
+  # Enable Gnome on Wayland with fractional scaling.
   services.xserver = {
     enable = true;
     displayManager.gdm = {
@@ -355,6 +268,10 @@
         experimental-features = ['scale-monitor-framebuffer']
       '';
     };
+  };
+  ## Improve (font)redering for Electron apps by forcing wayland
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
   };
 
   ##########
@@ -461,7 +378,6 @@
   environment.systemPackages = with pkgs; [
 
     # CLI Applications and other tools
-    abcde
     dconf2nix
     ffmpeg-full
     flac
@@ -510,7 +426,6 @@
     impression
     libreoffice-fresh
     makemkv
-    mpv
     newsflash
     obsidian
     picard
@@ -533,15 +448,6 @@
     todoist-electron
 
   ];
-
-  ## Some software needs additional configuration to function fully.
-  environment.sessionVariables = {
-    # Configure TPM tools to use kernel resource manager by default
-    TPM2TOOLS_TCTI = "device:/dev/tpmrm0";
-
-    # Force Wayland for Electron, sharper on fractional scaling in Gnome
-    NIXOS_OZONE_WL = "1";
-  };
 
   ## 1Password Set-up
   # If it ever does not work, you can change these to "lib.mkForce false" to override NixOS priority setting.
@@ -568,36 +474,9 @@
   # Disable GPG agent SSH support (conflicts with 1Password)
   programs.gnupg.agent.enableSSHSupport = false;
 
-  ## Set-up Virtual machine support
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [ pkgs.OVMFFull.fd ];
-      };
-      vhostUserPackages = with pkgs; [ virtiofsd ];
-    };
-
-    # Network configuration
-    allowedBridges = [ "virbr0" ];
-
-    # Additional configuration for better networking
-    extraConfig = ''
-      unix_sock_group = "libvirtd"
-      unix_sock_ro_perms = "0777"
-      unix_sock_rw_perms = "0770"
-      auth_unix_ro = "none"
-      auth_unix_rw = "none"
-    '';
-
-    # Clean start/shutdown with host
-    onBoot = "ignore"; # Don't auto-start VMs on boot
-    onShutdown = "shutdown"; # Gracefully shutdown VMs on host shutdown
-  };
+  ## Virt-manager set-up
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
 
   ## Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
