@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.1, Copyright 2025.
+# Version 1.0, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -17,11 +17,6 @@
 # You should have received a copy of the GNU General Public License
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
-## Set variables
-scriptpath=$HOME/GitHub/PurpleNix/
-
-## Link scripts to home folder
-ln -s ${scriptpath}/delete-old-generations.sh $HOME/delete-old-generations.sh
-ln -s ${scriptpath}/switch-config.sh $HOME/switch-config.sh
-ln -s ${scriptpath}/test-config.sh $HOME/test-config.sh
-ln -s ${scriptpath}/update-check.sh $HOME/update-check.sh
+## Delete old generations 
+sudo nix-collect-garbage -d
+echo "Old generations are removed. The next time you switch to a new generation your boot menu will be cleaned up."
