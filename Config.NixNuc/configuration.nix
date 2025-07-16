@@ -410,7 +410,6 @@
 
     # GUI Applications
     calibre
-    chatgpt
     dconf-editor
     eyedropper
     gimp3-with-plugins
