@@ -410,6 +410,7 @@
 
     # GUI Applications
     calibre
+    chatgpt
     dconf-editor
     eyedropper
     gimp3-with-plugins
@@ -425,6 +426,7 @@
     handbrake
     high-tide
     impression
+    icloudpd
     libreoffice-fresh
     makemkv
     newsflash
