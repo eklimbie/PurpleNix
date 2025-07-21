@@ -409,12 +409,14 @@
     virtiofsd
 
     # GUI Applications
+    apostrophe
     calibre
+    celluloid
     dconf-editor
     eyedropper
+    foliate
     gimp3-with-plugins
     github-desktop
-    gnomeExtensions.airpod-battery-monitor
     gnomeExtensions.caffeine
     gnomeExtensions.night-theme-switcher
     gnomeExtensions.tiling-shell
@@ -426,6 +428,7 @@
     high-tide
     impression
     icloudpd
+    joplin-desktop
     libreoffice-fresh
     makemkv
     newsflash
@@ -435,6 +438,7 @@
     protonvpn-gui
     resources
     signal-desktop
+    solaar
     sound-juicer
     soundconverter
     tor-browser
