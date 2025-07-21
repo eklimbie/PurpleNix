@@ -438,7 +438,6 @@
     protonvpn-gui
     resources
     signal-desktop
-    solaar
     sound-juicer
     soundconverter
     tor-browser
