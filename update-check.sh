@@ -19,12 +19,13 @@
 
 # Set variables
 machine=$(hostname)
+configpath=$HOME/GitHub/PurpleNix/Config.$(hostname)/
 
 ## Set Working directory
 pushd ~/GitHub/PurpleNix/
 
 ## Test the new system config but don't make it bootable
-sudo nixos-rebuild dry-run -I nixos-config=./Config.${machine}/configuration.nix --upgrade
+sudo nixos-rebuild dry-run -I nixos-config=${configpath}/configuration.nix --upgrade
 echo "Run \"./switch-config.sh\" to install available updates"
 
 
