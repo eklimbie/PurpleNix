@@ -10,7 +10,7 @@
   ##########
   ## Network set-up
   networking.hostName = "NixNuc"; # Define your host name.
-  
+
   ##########
   ## Hardware set-up and config
   # Enable intel QuickSync for hardware video decoding

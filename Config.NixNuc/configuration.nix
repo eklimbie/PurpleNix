@@ -359,6 +359,19 @@
     ];
   };
 
+
+  ## Customise Packages to make them work.
+  nixpkgs.overlays = [
+    # Fix Jopin -enable-wayland-ime=true error on launch
+    (final: prev: {
+      joplin-desktop = prev.joplin-desktop.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          sed -i 's/--enable-wayland-ime=true//g' $out/bin/joplin-desktop
+        '';
+      });
+    })
+  ];
+
   ## Install apps via modules
   programs._1password.enable = true;
   programs._1password-gui = {
