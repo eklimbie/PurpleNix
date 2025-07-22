@@ -8,7 +8,17 @@
   pkgs,
   ...
 }:
-
+# Set Variables
+let
+  # Remember to add the unstable channel to make this usuable
+  # sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
+  # sudo nix-channel --update
+  unstable = import <nixos-unstable> {
+    config = {
+      allowUnfree = true;
+    };
+  };
+in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -359,19 +369,6 @@
     ];
   };
 
-
-  ## Customise Packages to make them work.
-  nixpkgs.overlays = [
-    # Fix Jopin -enable-wayland-ime=true error on launch
-    (final: prev: {
-      joplin-desktop = prev.joplin-desktop.overrideAttrs (old: {
-        postInstall = (old.postInstall or "") + ''
-          sed -i 's/--enable-wayland-ime=true//g' $out/bin/joplin-desktop
-        '';
-      });
-    })
-  ];
-
   ## Install apps via modules
   programs._1password.enable = true;
   programs._1password-gui = {
@@ -441,7 +438,7 @@
     high-tide
     impression
     icloudpd
-    joplin-desktop
+    unstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
     libreoffice-fresh
     makemkv
     newsflash
