@@ -13,6 +13,7 @@ let
   # Remember to add the unstable channel to make this usuable
   # sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
   # sudo nix-channel --update
+  # You can check available channels with sudo nix-channel --list
   unstable = import <nixos-unstable> {
     config = {
       allowUnfree = true;
@@ -275,7 +276,7 @@ in
       extraGSettingsOverridePackages = [ pkgs.mutter ];
       extraGSettingsOverrides = ''
         [org.gnome.mutter]
-        experimental-features = ['scale-monitor-framebuffer']
+        experimental-features = ['scale-monitor-framebuffer', 'xwayland-native-scaling', 'variable-refresh-rate']
       '';
     };
   };

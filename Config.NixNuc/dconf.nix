@@ -1,6 +1,6 @@
 # Based on dconf2nix: https://github.com/gvolpe/dconf2nix output.
 # Not all settings can be succesfully for best results do not run it on "/" but on the specif path you want to save.
-# for example: dconf dump /org/gnome/TextEditor/ | dconf2nix > dconf.nix
+# for example: dconf dump /org/gnome/shell/enabled-extensions/ | dconf2nix > dconf.nix
 
 { lib, ... }:
 
@@ -61,7 +61,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       ];
       favorite-apps = [
         "firefox.desktop"
-        "io.gitlab.news_flash.NewsFlash.desktop"
+        # "io.gitlab.news_flash.NewsFlash.desktop"
         "org.gnome.Geary.desktop"
         "org.gnome.Calendar.desktop"
         "obsidian.desktop"
@@ -82,6 +82,10 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       ];
       enable-fullscreen = true;
       enable-mpris = true;
+    };
+
+    "org/gnome/shell/extensions/nightthemeswitcher/time" = {
+      manual-schedule = false;
     };
 
     "org/gnome/shell/extensions/vitals" = {
