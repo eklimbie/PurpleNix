@@ -399,6 +399,8 @@ in
     hunspellDicts.en_GB-large
     hunspellDicts.en_US-large
     hunspellDicts.nl_NL
+    hyphenDicts.de_DE
+    hyphenDicts.en_US
     imagemagickBig
     intel-gpu-tools # Intel Specific info about hardware
     libheif
@@ -457,6 +459,7 @@ in
     vlc
     vscode
     yubioath-flutter
+    zed-editor
 
     # Things replacement candidates:
     planify
