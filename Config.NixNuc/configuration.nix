@@ -425,7 +425,6 @@ in
     apostrophe
     calibre
     celluloid
-    darktable
     digikam
     dconf-editor
     eyedropper
@@ -465,10 +464,7 @@ in
 
     # Things replacement candidates:
     planify
-    super-productivity
-    ticktick
     todoist-electron
-
   ];
 
   ## 1Password Set-up

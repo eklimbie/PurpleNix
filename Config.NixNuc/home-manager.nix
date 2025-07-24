@@ -131,7 +131,7 @@ in
         # Ensure that 1Password is always loaded.
         onePassword-autostart = {
           Unit = {
-            description = "1Password Autostart";
+            Description = "1Password Autostart";
             After = [ "graphical-session.target" ];
             Wants = [ "graphical-session.target" ];
           };
@@ -147,8 +147,30 @@ in
             WantedBy = [ "graphical-session.target" ];
           };
         };
+        # Set-up an automatic, continuous iClouf photo sync
+        icloudpd-daemon = {
+          Unit = {
+            Description = "Continuous iCloud photo sync";
+            After = [ "network-online.target" ];
+            Wants = [ "network-online.target" ];
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = "${pkgs.icloudpd}/bin/icloudpd \
+              --watch-with-interval 3600 \
+              --directory /home/ewout/Pictures/icloud \
+              --username ewout@klimbie.eu \
+              --notification-email ewout@klimbie.eu";
+            Restart = "on-failure";
+            RestartSec = 5;
+            StartLimitBurst = 5; # Only try 5 restarts...
+            StartLimitIntervalSec = 30; # ...within 30 seconds, then give up
+          };
+          Install = {
+            WantedBy = [ "default.target" ];
+          };
+        };
       };
-
       # yt-dlp config
       programs.yt-dlp.enable = true;
       programs.yt-dlp.settings = {
