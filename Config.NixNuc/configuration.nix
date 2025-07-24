@@ -425,6 +425,8 @@ in
     apostrophe
     calibre
     celluloid
+    darktable
+    digikam
     dconf-editor
     eyedropper
     foliate
