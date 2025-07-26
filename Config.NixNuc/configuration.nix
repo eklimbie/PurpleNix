@@ -91,6 +91,13 @@ in
     }
   ];
 
+  # Enable hibernation for the swapfile
+  boot.resumeDevice = "/dev/mapper/enc";
+  boot.kernelParams = [
+    "resume=/dev/mapper/enc"
+    "resume_offset=2981549" # Update with system specific number
+  ];
+
   # Set-up auto scrubbing (integrity checking) of btrfs
   services.btrfs.autoScrub = {
     enable = true;
@@ -391,6 +398,7 @@ in
   environment.systemPackages = with pkgs; [
 
     # CLI Applications and other tools
+    btrfs-progs
     dconf2nix
     ffmpeg-full
     flac
@@ -406,7 +414,7 @@ in
     imagemagickBig
     intel-gpu-tools # Intel Specific info about hardware
     libheif
-    libnotify # Enables sending desktop notifications in custom services 
+    libnotify # Enables sending desktop notifications in custom services
     nano
     nixd # Nix language server (LSP) for use in vscode
     nixfmt-rfc-style # Official formatter for Nix code
