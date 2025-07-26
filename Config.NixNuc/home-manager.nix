@@ -122,7 +122,7 @@ in
             Restart = "on-failure";
             RestartSec = 5;
             StartLimitBurst = 5; # Only try 5 restarts...
-            StartLimitIntervalSec = 30; # ...within 30 seconds, then give up
+            StartLimitInterval = 30; # ...within 30 seconds, then give up
           };
           Install = {
             WantedBy = [ "graphical-session.target" ];
@@ -141,33 +141,27 @@ in
             Restart = "on-failure";
             RestartSec = 5;
             StartLimitBurst = 5; # Only try 5 restarts...
-            StartLimitIntervalSec = 30; # ...within 30 seconds, then give up
+            StartLimitInterval = 30; # ...within 30 seconds, then give up
           };
           Install = {
             WantedBy = [ "graphical-session.target" ];
           };
         };
-        # Set-up an automatic, continuous iClouf photo sync
+        # Set-up an automatic, continuous iCloud photo sync
         icloudpd-daemon = {
           Unit = {
             Description = "Continuous iCloud photo sync";
-            After = [ "network-online.target" ];
-            Wants = [ "network-online.target" ];
           };
           Service = {
             Type = "simple";
-            ExecStart = "${pkgs.icloudpd}/bin/icloudpd \
-              --watch-with-interval 3600 \
-              --directory /home/ewout/Pictures/icloud \
-              --username ewout@klimbie.eu \
-              --notification-email ewout@klimbie.eu";
+            ExecStart = "${pkgs.icloudpd}/bin/icloudpd --username ewout@klimbie.eu --directory /home/ewout/Pictures/icloud --watch-with-interval 3600 --notification-email ewout@klimbie.eu";
             Restart = "on-failure";
             RestartSec = 5;
             StartLimitBurst = 5; # Only try 5 restarts...
-            StartLimitIntervalSec = 30; # ...within 30 seconds, then give up
+            StartLimitInterval = 30; # ...within 30 seconds, then give up
           };
           Install = {
-            WantedBy = [ "default.target" ];
+            WantedBy = [ "graphical-session.target" ];
           };
         };
       };
