@@ -161,7 +161,7 @@ in
             StartLimitInterval = 30; # ...within 30 seconds, then give up
           };
           Install = {
-            WantedBy = [ "graphical-session.target" ];
+            WantedBy = [ "default.target" ];
           };
         };
       };
