@@ -100,14 +100,14 @@ The first boot will be slow, because the OS is generating a swapfile.
     sudo cryptsetup luksDump /dev/disk/by-partlabel/system
     ```
 
-2. Enroll the TPM Key with LUKS
+2. Enroll the TPM Key with LUKS. the ```--tpm2-pcrs=``` options lists the triggers that will invalidate the key. Based on [this guide](https://community.frame.work/t/guide-setup-tpm2-autodecrypt/39005) the options ```1+5+7+11+12+14+15``` were chosen.
 
     ```sh
     # Enroll TPM for automatic unlocking
-    sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7 /dev/disk/by-partlabel/system
+    sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=1+5+7+11+12+14+15 /dev/disk/by-partlabel/system
     
     # Enroll TPM for automatic unlocking, with PIN
-    sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7 --tpm2-with-pin=yes /dev/disk/by-partlabel/system 
+    sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=1+5+7+11+12+14+15 --tpm2-with-pin=yes /dev/disk/by-partlabel/system 
 
     # Verify enrollment
     sudo systemd-cryptenroll --list /dev/disk/by-partlabel/system
