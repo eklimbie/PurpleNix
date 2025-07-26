@@ -10,7 +10,9 @@
 }:
 # Set Variables
 let
-  # Remember to add the unstable channel to make this usuable
+  ## Add the unstable channel
+  # This will enable loading a package from unstable with the "unstable."
+  # prefix. Remember to add the unstable channel to make this usuable:
   # sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
   # sudo nix-channel --update
   # You can check available channels with sudo nix-channel --list
@@ -448,6 +450,7 @@ in
     makemkv
     newsflash
     obsidian
+    parabolic
     picard
     plex-desktop
     protonvpn-gui
