@@ -109,5 +109,8 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
     "org/gnome/system/location" = {
       enabled = true;
     };
+    "org/gtk/gtk4/settings/file-chooser" = {
+      sort-directories-first = false;
+    };
   };
 }

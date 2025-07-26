@@ -109,6 +109,16 @@ in
       ##########
       ## User Systemd Services
       systemd.user.services = {
+        # Template notification Service
+        "notify@" = {
+          Unit = {
+            Description = "Desktop alert for %i failure";
+          };
+          Service = {
+            Type = "oneshot";
+            ExecStart  = ''${pkgs.libnotify}/bin/notify-send --urgency=critical --icon=dialog-error "Service %i stopped" "Run: journalctl --user -u %i"'';
+            };
+        };
         # Automatically start input-remapper so that it works if I set-up a config
         input-remapper-autostart = {
           Unit = {
@@ -151,6 +161,10 @@ in
         icloudpd-daemon = {
           Unit = {
             Description = "Continuous iCloud photo sync";
+            OnFailure = [ "notify@%n.service" ];
+            OnFailureJobMode = "replace"; # drop duplicate alerts during a restart loop
+            OnSuccess = [ "notify@%n.service" ];
+            OnSuccessJobMode = "replace";
           };
           Service = {
             Type = "simple";

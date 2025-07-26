@@ -404,6 +404,7 @@ in
     imagemagickBig
     intel-gpu-tools # Intel Specific info about hardware
     libheif
+    libnotify # Enables sending desktop notifications in custom services 
     nano
     nixd # Nix language server (LSP) for use in vscode
     nixfmt-rfc-style # Official formatter for Nix code
