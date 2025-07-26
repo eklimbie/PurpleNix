@@ -95,6 +95,8 @@ in
   boot.resumeDevice = "/dev/mapper/enc";
   boot.kernelParams = [
     "resume=/dev/mapper/enc"
+    # You can find the correct off-set with
+    # sudo btrfs inspect-internal map-swapfile -r /swap/swapfile
     "resume_offset=2981549" # Update with system specific number
   ];
 

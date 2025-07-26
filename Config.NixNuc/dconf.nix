@@ -53,6 +53,10 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       name = "Open Console";
     };
 
+    "org/gnome/settings-daemon/plugins/power" = {
+      power-button-action = "hibernate";
+    };
+
     "org/gnome/shell" = {
       enabled-extensions = [
         "caffeine@patapon.info"
@@ -109,6 +113,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
     "org/gnome/system/location" = {
       enabled = true;
     };
+    
     "org/gtk/gtk4/settings/file-chooser" = {
       sort-directories-first = false;
     };
