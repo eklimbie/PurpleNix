@@ -369,9 +369,8 @@ in
         enable = true;
         style = "slight"; # "slight" usually better for high DPI
       };
-      defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
     };
+    enableDefaultPackages = true;
     packages = with pkgs; [
       corefonts # Microsoft core fonts for web compatibility
       inter # Modern alternative to inclusive-sans
