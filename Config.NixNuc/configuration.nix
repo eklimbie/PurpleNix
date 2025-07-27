@@ -451,6 +451,7 @@ in
     github-desktop
     gnomeExtensions.caffeine
     gnomeExtensions.night-theme-switcher
+    gnomeExtensions.smile-complementary-extension
     gnomeExtensions.tiling-shell
     gnomeExtensions.vitals
     gnome-tweaks

@@ -8,6 +8,15 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
 
 {
   dconf.settings = {
+    "it/mijorus/smile" = {
+      emoji-size-class = "emoji-button";
+      iconify-on-esc = true;
+      last-run-version = "2.10.1";
+      load-hidden-on-startup = true;
+      mouse-multi-select = true;
+      use-localized-tags = true;
+      tags-locale = "nl";
+    };
     "org/gnome/TextEditor" = {
       highlight-current-line = true;
       show-line-numbers = true;
@@ -68,6 +77,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
         # "io.gitlab.news_flash.NewsFlash.desktop"
         "org.gnome.Geary.desktop"
         "org.gnome.Calendar.desktop"
+        "todoist.desktop"
         "obsidian.desktop"
         "io.github.nokse22.HighTide.desktop"
         "code.desktop"
