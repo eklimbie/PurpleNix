@@ -32,6 +32,10 @@ in
       ];
 
       ##########
+      ## Font configuration
+      fonts.fontconfig.enable = true;
+
+      ##########
       ## Yubikey Registration
       # Create the U2F keys file and use xdg.configFile for XDG compliance
       # This automatically creates ~/.config/Yubico/u2f_keys
