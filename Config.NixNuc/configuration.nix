@@ -454,6 +454,7 @@ in
     gnomeExtensions.smile-complementary-extension
     gnomeExtensions.tiling-shell
     gnomeExtensions.vitals
+    gnome-maps
     gnome-tweaks
     google-chrome
     gparted

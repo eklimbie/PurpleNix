@@ -29,9 +29,9 @@
   # The Mediatek Chipset needs some additional config to make it work
   # https://community.frame.work/t/framework-laptop-13-amd-ryzen-ai-300-series-wireless-psa/68181
   # Load wireless regulatory database
-  hardware.wirelessRegulatoryDatabase = true;
+  # hardware.wirelessRegulatoryDatabase = true;
   # Set country code (e.g., Germany)
-  boot.extraModprobeConfig = ''
-    options cfg80211 ieee80211_regdom="DE"
-  '';
+  # boot.extraModprobeConfig = ''
+  #   options cfg80211 ieee80211_regdom="DE"
+  # '';
 }
