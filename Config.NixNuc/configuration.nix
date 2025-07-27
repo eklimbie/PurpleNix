@@ -369,6 +369,7 @@ in
         enable = true;
         style = "slight"; # "slight" usually better for high DPI
       };
+      useEmbeddedBitmaps = true;
     };
     enableDefaultPackages = true;
     enableGhostscriptFonts = true;
@@ -378,6 +379,7 @@ in
       liberation_ttf
       nerd-fonts.fira-code # Programming font with icons
       noto-fonts # Comprehensive Unicode support
+      noto-fonts-cjk # Support for Chinese, Japanese and Korean
       noto-fonts-emoji # Comprehensive Unicode support
       roboto # Google's Material Design font
       roboto-mono # Monospace version
@@ -469,6 +471,7 @@ in
     protonvpn-gui
     resources
     signal-desktop
+    smile # Emoji pciker for Gnome
     sound-juicer
     soundconverter
     todoist-electron
