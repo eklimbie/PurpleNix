@@ -1,6 +1,6 @@
 # Based on dconf2nix: https://github.com/gvolpe/dconf2nix output.
 # Not all settings can be succesfully for best results do not run it on "/" but on the specif path you want to save.
-# for example: dconf dump /org/gnome/shell/enabled-extensions/ | dconf2nix > dconf.nix
+# for example: dconf dump /org/gnome/shell/enabled-extensions/ | dconf2nix > dconfdump.nix
 
 { lib, ... }:
 
@@ -10,7 +10,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
   dconf.settings = {
     "it/mijorus/smile" = {
       emoji-size-class = "emoji-button";
-      iconify-on-esc = true;
+      iconify-on-esc = false;
       last-run-version = "2.10.1";
       load-hidden-on-startup = true;
       mouse-multi-select = true;
@@ -62,8 +62,10 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       name = "Open Console";
     };
 
-    "org/gnome/settings-daemon/plugins/power" = {
-      power-button-action = "hibernate";
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      binding = "<Control><Super>space";
+      command = "smile";
+      name = "EmojiPicker";
     };
 
     "org/gnome/shell" = {
@@ -71,6 +73,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
         "caffeine@patapon.info"
         "Vitals@CoreCoding.com"
         "nightthemeswitcher@romainvigier.fr"
+        "smile-extension@mijorus.it"
       ];
       favorite-apps = [
         "firefox.desktop"
@@ -123,7 +126,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
     "org/gnome/system/location" = {
       enabled = true;
     };
-    
+
     "org/gtk/gtk4/settings/file-chooser" = {
       sort-directories-first = false;
     };
