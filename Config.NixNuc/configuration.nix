@@ -406,6 +406,7 @@ in
 
     # CLI Applications and other tools
     btrfs-progs
+    borgbackup
     dconf2nix
     ffmpeg-full
     flac
@@ -469,6 +470,7 @@ in
     obsidian
     parabolic
     picard
+    pika-backup
     plex-desktop
     protonvpn-gui
     resources
