@@ -369,10 +369,13 @@ in
         enable = true;
         style = "slight"; # "slight" usually better for high DPI
       };
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
     };
     packages = with pkgs; [
       corefonts # Microsoft core fonts for web compatibility
       inter # Modern alternative to inclusive-sans
+      liberation_ttf
       nerd-fonts.fira-code # Programming font with icons
       noto-fonts # Comprehensive Unicode support
       noto-fonts-emoji # Comprehensive Unicode support
@@ -468,17 +471,13 @@ in
     signal-desktop
     sound-juicer
     soundconverter
+    todoist-electron
     tor-browser
     transmission_4-gtk
     typora
     vlc
     vscode
     yubioath-flutter
-    zed-editor
-
-    # Things replacement candidates:
-    planify
-    todoist-electron
   ];
 
   ## 1Password Set-up
