@@ -379,7 +379,7 @@ in
       liberation_ttf
       nerd-fonts.fira-code # Programming font with icons
       noto-fonts # Comprehensive Unicode support
-      noto-fonts-cjk # Support for Chinese, Japanese and Korean
+      noto-fonts-cjk-sans # Support for Chinese, Japanese and Korean
       noto-fonts-emoji # Comprehensive Unicode support
       roboto # Google's Material Design font
       roboto-mono # Monospace version
