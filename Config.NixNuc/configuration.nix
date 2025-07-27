@@ -371,6 +371,7 @@ in
       };
     };
     enableDefaultPackages = true;
+    enableGhostscriptFonts = true;
     packages = with pkgs; [
       corefonts # Microsoft core fonts for web compatibility
       inter # Modern alternative to inclusive-sans
