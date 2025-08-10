@@ -18,7 +18,7 @@
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
 ## Set variables
-repopath=$HOME/GitHub/PurpleNix/
+repopath=$HOME/GitHub/PurpleNix
 
 ## Set Working directory
 pushd ${repopath}

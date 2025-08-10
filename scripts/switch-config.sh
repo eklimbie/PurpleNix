@@ -18,7 +18,7 @@
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
 ## Set variables
-repopath=$HOME/GitHub/PurpleNix/
+repopath=$HOME/GitHub/PurpleNix
 machine=$(hostname)
 generation="$(basename "$(readlink /nix/var/nix/profiles/system)" | cut -d- -f2)"
 
@@ -33,11 +33,11 @@ sudo nixos-rebuild switch --flake .#
 
 ## Copy the new config to the system config folder
 echo "Copying the configuration to the system config folder..."
-sudo cp ${repopath}/* /etc/nixos/
+sudo cp -r ${repopath}/* /etc/nixos/
 
 ## Add updated config to GitHub repository
 echo "Committing the updated configuration to the repository..."
-git add ${repopath}/hosts* ${repopath}/modules/* ${repopath}/home-manager*
+git add ${repopath}/hosts/* ${repopath}/modules/* ${repopath}/home-manager/*
 git commit -m "Updated your NixOS config bringing ${machine} to generation ${generation}"
 echo "Don't forget to push your changes with \"git push\"!"
 

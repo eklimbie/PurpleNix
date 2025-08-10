@@ -18,7 +18,7 @@
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
 ## Set variables
-configpath=$HOME/GitHub/PurpleNix/hosts/$(hostname)/
+configpath=$HOME/GitHub/PurpleNix/hosts/$(hostname)
 
 # Ingest system config
 mkdir ${configpath}
