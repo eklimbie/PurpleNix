@@ -6,40 +6,17 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 # Set Variables
 let
-  ## Add the unstable channel
-  # This will enable loading a package from unstable with the "unstable."
-  # prefix. Remember to add the unstable channel to make this usuable:
-  # sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
-  # sudo nix-channel --update
-  # You can check available channels with sudo nix-channel --list
-  unstable = import <nixos-unstable> {
-    config = {
-      allowUnfree = true;
-    };
-  };
+
 in
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # Include the optimisations specific to the machine.
-    # ./nixnuc-configuration.nix
-
-    # NixOS has dedicated custom fixes for some hardware. You can enble that
-    # by adding the hardware channel and then adding the specific device as a
-    # module below
-    # https://github.com/NixOS/nixos-hardware
-    # <nixos-hardware/framework/13-inch/amd-ai-300-series>
-
-    # Home Manager only works after you've added the channel to your install.
-    # You may need to disable this in your initial install, for details go to
-    # https://nix-community.github.io/home-manager/index.xhtml#ch-installation
-    <home-manager/nixos> # Import Home Manger from channel
-    ./home-manager.nix # Import Home Manager config
   ];
 
   # Enable flake support
@@ -497,6 +474,7 @@ in
     hunspellDicts.nl_NL
     hyphenDicts.de_DE
     hyphenDicts.en_US
+    icloudpd
     imagemagickBig
     intel-gpu-tools # Intel Specific info about hardware
     libheif
@@ -540,8 +518,8 @@ in
     handbrake
     high-tide
     impression
-    icloudpd
-    unstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
+    #unstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
+    joplin-desktop
     libreoffice-fresh
     makemkv
     newsflash

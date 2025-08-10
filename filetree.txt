@@ -1,0 +1,37 @@
+.
+├── Config.NixNuc
+│   ├── configuration.nix
+│   ├── dconf.nix
+│   ├── hardware-configuration.nix
+│   └── home-manager.nix
+├── delete-old-generations.sh
+├── documentation
+│   ├── Nixos Manual.md
+│   ├── nixos-tpm-cheatsheet.md
+│   └── nixos-tpm-recovery-guide.md
+├── filetree.txt
+├── flake.lock
+├── flake.nix
+├── home-manager
+│   ├── dconf.nix
+│   └── ewout.home.nix
+├── hosts
+│   ├── Babbage
+│   │   └── framework.nix
+│   └── NixNuc
+│       ├── configuration.nix
+│       └── hardware-configuration.nix
+├── LICENSE
+├── modules
+├── README.md
+├── result -> /nix/store/jg94mwgsl1wn91hjncanpzzskwz6cqh9-nixos-system-NixNuc-25.05.20250808.fc756aa
+├── scripts
+│   ├── add-channels.sh
+│   ├── copy-system-config.sh
+│   ├── link-scripts-home.sh
+│   └── nix-partition-set-up.sh
+├── switch-config.sh
+├── test-config.sh
+└── update-check.sh
+
+10 directories, 25 files

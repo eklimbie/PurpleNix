@@ -42,6 +42,9 @@ in
     ./home-manager.nix # Import Home Manager config
   ];
 
+  # Enable flake support
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   ##########
   ## TPM and Security Configuration
   # Enable TPM 2.0 support
