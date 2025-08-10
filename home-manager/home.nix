@@ -91,7 +91,7 @@ in
           insteadOf = "https://github.com/";
         };
       };
-      advice.addIgnoredFile = false; # Removes message to reming me that some of the added files are being ignored
+      # advice.addIgnoredFile = false; # Removes message to reming me that some of the added files are being ignored
     };
   };
 
