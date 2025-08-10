@@ -17,22 +17,29 @@
 # You should have received a copy of the GNU General Public License
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
-# Set variables
+## Set variables
+repopath=$HOME/GitHub/PurpleNix/
 machine=$(hostname)
-configpath=$HOME/GitHub/PurpleNix/Config.$(hostname)/
+generation="$(basename "$(readlink /nix/var/nix/profiles/system)" | cut -d- -f2)"
+
+## Check if Config folder exists
+# To be added
 
 ## Set Working directory
-pushd ~/GitHub/PurpleNix/
+pushd ${repopath}
 
-## Test the new system config but don't make it bootable
-sudo nixos-rebuild dry-run -I nixos-config=${configpath}/configuration.nix --upgrade
-echo "Run \"./switch-config.sh\" to install available updates"
+# Build NixOS based on your flake, enables it, and adds it to the boot menu
+sudo nixos-rebuild switch --flake .#
 
+## Copy the new config to the system config folder
+echo "Copying the configuration to the system config folder..."
+sudo cp ${repopath}/* /etc/nixos/
 
-## Check for LVFS firmware updates
-fwupdmgr refresh --force
-fwupdmgr get-updates
-echo "Run \"fwupdmgr update\" to install available updates"
+## Add updated config to GitHub repository
+echo "Committing the updated configuration to the repository..."
+git add ${repopath}/*
+git commit -m "Updated ${machine} NixOS configuration to generation ${generation}"
+echo "Don't forget to push your changes with \"git push\"!"
 
 ## Return to directory you ran the script from
 popd

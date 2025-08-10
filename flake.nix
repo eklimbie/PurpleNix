@@ -12,24 +12,23 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
       nixos-hardware,
       ...
-    }@inputs:
+    }:
     let
-      system = "x86-64-linux";
-      # pkgs = nixpkgs.legacyPackages.${system};
+      system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config = {
           allowUnfree = true;
         };
       };
-      unstable = import nixpkgs-unstable {
+      pkgsUnstable = import nixpkgs-unstable {
         inherit system;
         config = {
           allowUnfree = true;
@@ -41,22 +40,24 @@
       nixosConfigurations = {
         NixNuc = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs pkgsUnstable; };
           modules = [
+            # { nixpkgs.overlays = [ overlay-unstable ]; }
             ./hosts/NixNuc/configuration.nix
             home-manager.nixosModules.default
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.ewout = ./home-manager/home.nix;
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.ewout = ./home-manager/home.nix;
+                extraSpecialArgs = { inherit inputs; };
+              };
             }
           ];
         };
         Babbage = lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs pkgsUnstable; };
           modules = [
             ./hosts/Babbage/configuration.nix
             # Add a NixOS module to optimise settings for your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix

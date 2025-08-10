@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.0, Copyright 2025.
+# Version 1.1, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -18,9 +18,8 @@
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
 ## Set variables
-machine=$(hostname)
+configpath=$HOME/GitHub/PurpleNix/hosts/$(hostname)/
 
-## Test the new system config but don't make it bootable
-pushd ~/GitHub/PurpleNix
-sudo nixos-rebuild test -I nixos-config=./Config.${machine}/configuration.nix
-popd
+# Ingest system config
+mkdir ${configpath}
+cp /etc/nixos/* ${configpath}/

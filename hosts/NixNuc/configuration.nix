@@ -6,12 +6,12 @@
   config,
   lib,
   pkgs,
-  inputs,
+  pkgsUnstable,
   ...
 }:
 # Set Variables
 let
-
+  # unstable = pkgs-unstable;
 in
 {
   imports = [
@@ -20,7 +20,10 @@ in
   ];
 
   # Enable flake support
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   ##########
   ## TPM and Security Configuration
@@ -518,8 +521,8 @@ in
     handbrake
     high-tide
     impression
-    #unstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
-    joplin-desktop
+    pkgsUnstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
+    #joplin-desktop
     libreoffice-fresh
     makemkv
     newsflash

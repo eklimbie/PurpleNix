@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.1, Copyright 2025.
+# Version 1.2, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -18,7 +18,7 @@
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
 ## Set variables
-scriptpath=$HOME/GitHub/PurpleNix/
+scriptpath=$HOME/GitHub/PurpleNix/scripts
 
 ## Link scripts to home folder
 ln -s ${scriptpath}/delete-old-generations.sh $HOME/delete-old-generations.sh

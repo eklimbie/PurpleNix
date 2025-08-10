@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.0, Copyright 2025.
+# Version 1.1, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -17,9 +17,21 @@
 # You should have received a copy of the GNU General Public License
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz home-manager
-sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
-sudo nix-channel --add https://github.com/NixOS/nixos-hardware/archive/master.tar.gz nixos-hardware
+# Set variables
+repopath=$HOME/GitHub/PurpleNix/
 
-sudo nix-channel --update
-sudo nix-channel --list
+## Set Working directory
+pushd ${repopath}
+
+## Update all inputs of your flake.
+nix flake update
+nix flake metadata
+echo "Run \"./switch-config.sh\" to install available updates"
+
+## Check for LVFS firmware updates
+fwupdmgr refresh --force
+fwupdmgr get-updates
+echo "Run \"fwupdmgr update\" to install available updates"
+
+## Return to directory you ran the script from
+popd

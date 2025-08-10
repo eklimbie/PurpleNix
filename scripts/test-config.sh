@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.0, Copyright 2025.
+# Version 1.1, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -18,7 +18,13 @@
 # along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
 ## Set variables
-configpath=$HOME/GitHub/PurpleNix/Config.$(hostname)/
+repopath=$HOME/GitHub/PurpleNix/
 
-mkdir ${configpath}
-cp /etc/nixos/* ${configpath}/
+## Set Working directory
+pushd ${repopath}
+
+# Build NixOS using flakes and enables it, but doesn't add it to the boot menu
+sudo nixos-rebuild test --flake .#
+
+## Return to directory you ran the script from
+popd
