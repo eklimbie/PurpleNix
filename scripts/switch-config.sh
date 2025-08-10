@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.1, Copyright 2025.
+# Version 1.2, Copyright 2025.
 
 # This file is part of PurpleNix.
 
@@ -37,8 +37,8 @@ sudo cp ${repopath}/* /etc/nixos/
 
 ## Add updated config to GitHub repository
 echo "Committing the updated configuration to the repository..."
-git add ${repopath}/*
-git commit -m "Updated ${machine} NixOS configuration to generation ${generation}"
+git add ${repopath}/hosts* ${repopath}/modules/* ${repopath}/home-manager*
+git commit -m "Updated your NixOS config bringing ${machine} to generation ${generation}"
 echo "Don't forget to push your changes with \"git push\"!"
 
 ## Return to directory you ran the script from
