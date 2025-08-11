@@ -1,21 +1,21 @@
 #!/usr/bin/env sh
 # PurplePC is a collection of scripts and documentation made by Ewout Klimbie
-# Version 1.0, Copyright 2025.
+# Version 1.1, Copyright 2025.
 
-# This file is part of PurplePC.
+# This file is part of PurpleNix.
 
-# PurplePC is free software: you can redistribute it and/or modify
+# PurpleNix is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 
-# PurplePC is distributed in the hope that it will be useful,
+# PurpleNix is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
-# along with PurplePC. If not, see <https://www.gnu.org/licenses/>.
+# along with PurpleNix. If not, see <https://www.gnu.org/licenses/>.
 
 ## Automate most steps that are needed for a Btrfs install
 # Per instructions of: https://wiki.nixos.org/wiki/Btrfs
@@ -51,14 +51,14 @@ sudo umount /mnt
 read -p "All BTRFS volumes Created. Press any key to contiue..."
 
 ## Mount the partitions and subvolumes
-mount -o compress=zstd,subvol=nixos /dev/mapper/enc /mnt
-mkdir /mnt/{home,nix,swap}
-mount -o compress=zstd,subvol=home /dev/mapper/enc /mnt/home
-mount -o compress=zstd,noatime,subvol=nix /dev/mapper/enc /mnt/nix
-mount -o noatime,subvol=swap /dev/mapper/enc /mnt/swap
-mkdir /mnt/boot
-# The umask is needed to prevent NixOS from rporting a securitz problem during install. See https://discourse.nixos.org/t/security-warning-when-installing-nixos-23-11/37636
-mount -o umask=0077 ${disk}p1 /mnt/boot
+sudo mount -o compress=zstd,subvol=nixos /dev/mapper/enc /mnt
+sudo mkdir /mnt/{home,nix,swap}
+sudo mount -o compress=zstd,subvol=home /dev/mapper/enc /mnt/home
+sudo mount -o compress=zstd,noatime,subvol=nix /dev/mapper/enc /mnt/nix
+sudo mount -o noatime,subvol=swap /dev/mapper/enc /mnt/swap
+sudo mkdir /mnt/boot
+# The umask is needed to prevent NixOS from reporting a security problem during install. See https://discourse.nixos.org/t/security-warning-when-installing-nixos-23-11/37636
+sudo mount -o umask=0077 ${disk}p1 /mnt/boot
 
 read -p "All volumes are mounted and ready. Press any key to contiue..."
 
