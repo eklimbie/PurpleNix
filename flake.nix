@@ -59,9 +59,22 @@
           inherit system;
           specialArgs = { inherit inputs pkgsUnstable; };
           modules = [
+            { nixpkgs.config.allowUnfree = true; } # Allow unfree apps in all modules
             ./hosts/Babbage/configuration.nix
-            # Add a NixOS module to optimise settings for your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+            ./modules/coreCLITools.nix
+            ./modules/coreGUIApps.nix
+            ./modules/onePassword.nix
+            # Add a NixOS module to optimize settings for your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
             nixos-hardware.nixosModules.framework-amd-ai-300-series
+            home-manager.nixosModules.default
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.ewout = ./home-manager/laptopHome.nix;
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
           ];
         };
       };

@@ -44,7 +44,7 @@ in
 
   ##########
   ## Updated LUKS Configuration for TPM
-  # Copy this over your existing boot.initrd.luks.devices."enc" in your hadware-configuration.nix:
+  # Copy this over your existing boot.initrd.luks.devices."enc" in your hardware-configuration.nix:
   boot.initrd.luks.devices."enc" = {
     device = "/dev/disk/by-partlabel/system";
     # IMPORTANT: Always keep password fallback. Gives error if enabled, according to nixos-rebuild it is implied in my current config.
@@ -70,7 +70,7 @@ in
   swapDevices = [
     {
       device = "/swap/swapfile";
-      size = 64 * 1024; # Creates an 64GB swap file
+      size = 64 * 1024; # Creates an 64 GB swap file
     }
   ];
 
