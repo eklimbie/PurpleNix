@@ -20,7 +20,7 @@
   boot.loader = {
     systemd-boot = {
       enable = true;
-      consoleMode = "2"; # The first non-standard mode provided by the device firmware, if any
+      consoleMode = "auto";
       memtest86.enable = true;
       # configurationLimit = 10; # Keep only 10 boot entries to prevent boot partition from filling up.
     };
