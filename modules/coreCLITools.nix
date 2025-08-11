@@ -14,7 +14,7 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    
+
     # CLI Applications and other tools
     btrfs-progs
     dconf2nix
@@ -28,7 +28,7 @@
     usbutils # To get information about usb devices
     wget
   ];
-  
+
   # Enable the Linux fwupd service
   services.fwupd.enable = true;
 }
