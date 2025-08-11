@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Enable flake support
   nix.settings.experimental-features = [
@@ -47,7 +52,18 @@
       size = 64 * 1024; # Creates an 64 GB swap file
     }
   ];
-  
+
+  # Enable hibernation for the swapfile
+  boot.resumeDevice = "/dev/mapper/enc";
+
+  boot.kernelParams = [
+    # Hibernation support
+    "resume=/dev/mapper/enc"
+    # You can find the correct off-set with
+    # sudo btrfs inspect-internal map-swapfile -r /swap/swapfile
+    "resume_offset=8271112" # Update with system specific number
+  ];
+
   # Set-up auto scrubbing (integrity checking) of btrfs
   services.btrfs.autoScrub = {
     enable = true;
@@ -83,11 +99,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -176,4 +190,3 @@
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-

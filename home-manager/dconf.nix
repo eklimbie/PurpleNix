@@ -1,6 +1,6 @@
 # Based on dconf2nix: https://github.com/gvolpe/dconf2nix output.
 # Not all settings can be succesfully for best results do not run it on "/" but on the specif path you want to save.
-# for example: dconf dump /org/gnome/shell/enabled-extensions/ | dconf2nix > dconfdump.nix
+# for example: dconf dump /org/gnome/settings-daemon/plugins/media-keys/ | dconf2nix > dconfdump.nix
 
 { lib, ... }:
 
