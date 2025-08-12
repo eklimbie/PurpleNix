@@ -6,10 +6,13 @@
   ...
 }:
 {
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Install apps via modules
   programs.chromium.enable = true;
   programs.firefox.enable = true;
-  
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -30,7 +33,7 @@
     speedtest-cli
     texliveFull
     yt-dlp
-    
+
     # GUI Applications
     apostrophe
     calibre
@@ -71,8 +74,16 @@
     todoist-electron
     tor-browser
     transmission_4-gtk
-    typora
     vlc
     vscode
   ];
+
+  ##########
+  ## List services that you want to enable:
+
+  # Enable Jotta
+  services.jotta-cli = {
+    enable = true;
+    # options = [ ];
+  };
 }
