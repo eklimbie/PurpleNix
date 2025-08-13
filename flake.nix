@@ -61,6 +61,7 @@
           modules = [
             { nixpkgs.config.allowUnfree = true; } # Allow unfree apps in all modules
             ./hosts/Babbage/configuration.nix
+            ./modules/gnome.nix
             ./modules/appsCoreCLI.nix
             ./modules/appsCoreDesktop.nix
             ./modules/onePassword.nix
