@@ -82,6 +82,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
         "org.gnome.Calendar.desktop"
         "todoist.desktop"
         "obsidian.desktop"
+        "signal.desktop"
         "io.github.nokse22.HighTide.desktop"
         "code.desktop"
         "org.gnome.Console.desktop"
