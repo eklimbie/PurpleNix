@@ -104,6 +104,25 @@ in
   ##########
   ## User Systemd Services
   systemd.user.services = {
+    # Automatically start input-remapper so that it works if I set-up a config
+    input-remapper-autostart = {
+      Unit = {
+        Description = "Input Remapper Autostart";
+        After = [ "graphical-session.target" ];
+        Wants = [ "graphical-session.target" ];
+      };
+      Service = {
+        Type = "simple";
+        ExecStart = "${pkgs.input-remapper}/bin/input-remapper-control --command autoload";
+        Restart = "on-failure";
+        RestartSec = 5;
+        StartLimitBurst = 5; # Only try 5 restarts...
+        StartLimitInterval = 30; # ...within 30 seconds, then give up
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
     # Ensure that 1Password is always loaded.
     onePassword-autostart = {
       Unit = {
@@ -124,13 +143,13 @@ in
       };
     };
   };
-  
+
   # yt-dlp config
   programs.yt-dlp.enable = true;
   programs.yt-dlp.settings = {
     path = "~/Downloads";
     cookies-from-browser = "firefox";
-    # Youtube is crackinf down on yt-dlp, some settings are needed to enable
+    # Youtube is cracking down on yt-dlp, some settings are needed to enable
     # download of all formats.
     # https://github.com/yt-dlp/yt-dlp/issues/12482
     # https://github.com/yt-dlp/yt-dlp/wiki/PO-Token-Guide

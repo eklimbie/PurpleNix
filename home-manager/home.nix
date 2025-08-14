@@ -179,7 +179,7 @@ in
   programs.yt-dlp.settings = {
     path = "~/Downloads";
     cookies-from-browser = "firefox";
-    # Youtube is crackinf down on yt-dlp, some settings are needed to enable
+    # Youtube is cracking down on yt-dlp, some settings are needed to enable
     # download of all formats.
     # https://github.com/yt-dlp/yt-dlp/issues/12482
     # https://github.com/yt-dlp/yt-dlp/wiki/PO-Token-Guide

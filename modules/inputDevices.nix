@@ -26,9 +26,9 @@
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
   
-    piper
+    # piper
     # pkgsUnstable.piper
-    libratbag
+    # libratbag
     # pkgsUnstable.libratbag
     
   ];
@@ -36,12 +36,12 @@
   ##########
   ## List services that you want to enable:
 
-  services.ratbagd = {
-    enable = true;
-    # package = pkgsUnstable.libratbag;
-  };
+  #services.ratbagd = {
+  #  enable = true;
+  #  package = pkgsUnstable.libratbag;
+  #};
 
   # Enable Input-remapper to easily change the mapping of your input device buttons
-  #services.input-remapper.enable = true;
+  services.input-remapper.enable = true;
 
 }
