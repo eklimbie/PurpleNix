@@ -34,16 +34,4 @@
     };
   };
 
-  ##########
-  ## Configure Keymap
-  # Configure key-map in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "altgr-intl"; # Can also be an empty string ""
-    # options = "";
-  };
-  # Configure Console keymap
-  # console.keyMap = "us"; # Default
-  console.useXkbConfig = true; # Make the rest of the system follow X11
-  
 }

@@ -5,17 +5,21 @@
   pkgsUnstable,
   ...
 }:
+let
+  flakePath = "~/GitHub/PurpleNix#";
+in 
 {
   ##########
   ## NixOS Optimisation
   # Enable auto updating, but do not enable auto-reboot
   system.autoUpgrade = {
     enable = true;
+    flake = flakePath;
     allowReboot = false;
     dates = "daily";
     operation = "switch";
     persistent = true;
-    randomizedDelaySec = "2hours";
+    randomizedDelaySec = "2h";
   };
   # This setting will de-duplicate the nix store periodically, saving space
   nix.optimise = {
