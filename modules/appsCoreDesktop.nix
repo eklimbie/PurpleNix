@@ -76,6 +76,7 @@
     transmission_4-gtk
     vlc
     vscode
+    warp
   ];
 
   ##########
