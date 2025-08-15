@@ -65,6 +65,7 @@
             ./modules/tpmLuksUnlock.nix
             ./modules/secureDNS.nix
             ./modules/inputDevices.nix
+            ./modules/l18n.nix
             ./modules/gnome.nix
             ./modules/appsCoreCLI.nix
             ./modules/appsCoreDesktop.nix
