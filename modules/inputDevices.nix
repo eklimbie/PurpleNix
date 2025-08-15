@@ -20,7 +20,7 @@
   console.useXkbConfig = true; # Make the rest of the system follow X11
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
+  services.libinput.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).

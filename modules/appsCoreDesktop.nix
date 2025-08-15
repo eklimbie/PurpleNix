@@ -44,6 +44,7 @@
     foliate
     gimp3-with-plugins
     github-desktop
+    gitg
     gnomeExtensions.caffeine
     gnomeExtensions.night-theme-switcher
     gnomeExtensions.smile-complementary-extension

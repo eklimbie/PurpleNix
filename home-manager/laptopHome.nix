@@ -91,6 +91,7 @@ in
           insteadOf = "https://github.com/";
         };
       };
+      # lfs.enable = true; # declaratively enable Git LFS filters, to make GitHub Desktop Happy
       # advice.addIgnoredFile = false; # Removes message to reming me that some of the added files are being ignored
     };
   };
