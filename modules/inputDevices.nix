@@ -1,8 +1,8 @@
 {
-  config,
-  lib,
-  pkgs,
-  pkgsUnstable,
+  # config,
+  # lib,
+  # pkgs,
+  # pkgsUnstable,
   ...
 }:
 {
@@ -31,14 +31,14 @@
 
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
-    environment.systemPackages = with pkgs; [
-
-      # piper
-      # pkgsUnstable.piper
-      # libratbag
-      # pkgsUnstable.libratbag
-
-    ];
+    # environment.systemPackages = with pkgs; [
+# 
+    #   piper
+    #   # pkgsUnstable.piper
+    #   libratbag
+    #   # pkgsUnstable.libratbag
+# 
+    # ];
 
     ##########
     ## List services that you want to enable:

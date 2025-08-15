@@ -1,8 +1,8 @@
 {
-  config,
-  lib,
+  # config,
+  # lib,
   pkgs,
-  pkgsUnstable,
+  # pkgsUnstable,
   ...
 }:
 let
@@ -38,7 +38,7 @@ in
 
     ##########
     ## Updated LUKS Configuration for TPM
-    boot.initrd.luks.devices."enc" = {
+    boot.initrd.luks.devices."${luksDevice}" = {
       device = luksPartition;
       # IMPORTANT: Always keep password fallback.
       # fallbackToPassword = true; # Gives error if enabled, according to nixos-rebuild it is implied in my current config.
