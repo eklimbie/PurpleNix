@@ -5,6 +5,13 @@
   pkgsUnstable,
   ...
 }:
+let
+  resumeDevice = "/dev/mapper/enc";
+  swapSize = 64; # In GB
+  # You can find the correct off-set with
+  # sudo btrfs inspect-internal map-swapfile -r /swap/swapfile
+  hibernateOffset = 8271112;
+in
 {
   ##########
   ## Set-up Filesystems
@@ -23,12 +30,12 @@
   swapDevices = [
     {
       device = "/swap/swapfile";
-      size = 64 * 1024; # Creates an 64 GB swap file
+      size = swapSize * 1024; # Creates a swap file
     }
   ];
 
   # Enable hibernation for the swapfile
-  boot.resumeDevice = "/dev/mapper/enc";
+  boot.resumeDevice = resumeDevice;
 
   # Set-up auto scrubbing (integrity checking) of btrfs
   services.btrfs.autoScrub = {
@@ -42,13 +49,10 @@
     ];
   };
 
-  # Kernel Parapmeters
+  # Kernel Parameters
   boot.kernelParams = [
-    # Hibernation support
-    "resume=/dev/mapper/enc"
-    # You can find the correct off-set with
-    # sudo btrfs inspect-internal map-swapfile -r /swap/swapfile
-    "resume_offset=2981549" # Update with system specific number
+    "resume=${resumeDevice}"
+    "resume_offset=${toString hibernateOffset}" # Update with system specific number
   ];
 
   environment.systemPackages = with pkgs; [

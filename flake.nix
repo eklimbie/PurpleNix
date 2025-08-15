@@ -74,6 +74,7 @@
             ./modules/user.nix
             ./modules/fonts.nix
             ./modules/sound.nix
+            ./modules/diskSetup.nix
             # Add a NixOS module to optimize settings for your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
             nixos-hardware.nixosModules.framework-amd-ai-300-series
             home-manager.nixosModules.default
