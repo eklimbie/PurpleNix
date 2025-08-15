@@ -64,12 +64,14 @@
             ./modules/nixOSOptimisation.nix
             ./modules/tpmLuksUnlock.nix
             ./modules/secureDNS.nix
+            ./modules/firewall.nix
             ./modules/inputDevices.nix
             ./modules/l18n.nix
             ./modules/gnome.nix
             ./modules/appsCoreCLI.nix
             ./modules/appsCoreDesktop.nix
             ./modules/onePassword.nix
+            ./modules/user.nix
             # Add a NixOS module to optimize settings for your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
             nixos-hardware.nixosModules.framework-amd-ai-300-series
             home-manager.nixosModules.default

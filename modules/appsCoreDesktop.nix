@@ -44,7 +44,6 @@
     foliate
     gimp3-with-plugins
     github-desktop
-    gitg
     gnomeExtensions.caffeine
     gnomeExtensions.night-theme-switcher
     gnomeExtensions.smile-complementary-extension
@@ -88,4 +87,17 @@
     enable = true;
     # options = [ ];
   };
+
+  ##########
+  ## Firewall set-up
+  # Open ports for applications that need it
+  networking.firewall = {
+    allowedTCPPorts = [
+      51047 # Transmission
+    ];
+    allowedUDPPorts = [
+      51047 # Transmission
+    ];
+  };
+
 }

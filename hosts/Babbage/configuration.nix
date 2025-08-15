@@ -21,6 +21,16 @@
     "flakes"
   ];
 
+  ## Enable power-optimisations
+  # Basic config
+  powerManagement.enable = true; # Basic NixOS set-up compatible with fancier stuff.
+  powerManagement.powertop.enable = false; # Powertop will make everything laggy, keep turned off.
+  networking.networkmanager.wifi.powersave = true; # Enable power-saving on wifi chip.
+
+  # Enable AMD powermanagent
+  services.power-profiles-daemon.enable = true; # works better with AMD tham TLP
+  services.tlp.enable = false; # Disabled, conflicts with ppd
+
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot = {
@@ -82,7 +92,7 @@
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "Europe/Berlin";
+  # time.timeZone = "Europe/Berlin";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -97,11 +107,11 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -122,20 +132,20 @@
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.ewout = {
-    isNormalUser = true;
-    initialPassword = "ewout";
-    description = "Ewout Klimbie";
-    extraGroups = [
-      "libvirtd" # Enable use of virtual machines
-      "networkmanager" # Default
-      # "tss" # Gives access to TPM devices without sudo
-      "wheel" # Allows sudo
-    ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
-  };
+  # users.users.ewout = {
+  #   isNormalUser = true;
+  #   initialPassword = "ewout";
+  #   description = "Ewout Klimbie";
+  #   extraGroups = [
+  #     "libvirtd" # Enable use of virtual machines
+  #     "networkmanager" # Default
+  #     # "tss" # Gives access to TPM devices without sudo
+  #     "wheel" # Allows sudo
+  #   ];
+  #   packages = with pkgs; [
+  #     #  thunderbird
+  #   ];
+  # };
 
   # programs.firefox.enable = true;
 
