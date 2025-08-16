@@ -12,7 +12,7 @@
     ./network.nix
     ./l18n.nix
     ./nixOSOptimisation.nix
-    ./secureDNS.nix
+    #./secureDNS.nix
   ];
 
   options = {
