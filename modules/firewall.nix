@@ -58,5 +58,16 @@
       # '';
     };
 
+    # Enable mDNS for .local domain resolution
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true; # Enable mDNS resolution via NSS
+      publish = {
+        enable = true;
+        addresses = true;
+        domain = true;
+      };
+    };
+
   };
 }
