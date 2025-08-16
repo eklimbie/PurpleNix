@@ -67,6 +67,7 @@ in
   # Git set-up for SSH signing
   programs.git = {
     enable = true;
+    lfs.enable = true; # Enable Git LFS filters, to make GitHub Desktop happy
     userName = "Ewout Klimbie";
     # You can find the right email address here: https://github.com/settings/emails
     userEmail = "90047337+eklimbie@users.noreply.github.com";
@@ -91,8 +92,6 @@ in
           insteadOf = "https://github.com/";
         };
       };
-      lfs.enable = true; # Enable Git LFS filters, to make GitHub Desktop happy
-      # advice.addIgnoredFile = false; # Removes message to reming me that some of the added files are being ignored
     };
   };
 
