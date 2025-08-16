@@ -44,9 +44,9 @@
 
       # GUI Applications
       calibre
-      celluloid
       digikam
       dconf-editor
+      ente-desktop
       eyedropper
       foliate
       gimp3-with-plugins
@@ -63,8 +63,8 @@
       handbrake
       high-tide
       impression
+      jitsi-meet-electron
       pkgsUnstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
-      joplin-desktop
       libreoffice-fresh
       makemkv
       obsidian
@@ -78,6 +78,7 @@
       smile # Emoji pciker for Gnome
       sound-juicer
       soundconverter
+      showtime
       todoist-electron
       tor-browser
       typora
@@ -85,6 +86,8 @@
       vlc
       vscode
       warp
+      zapzap
+      zoom-us
     ];
 
     ##########
