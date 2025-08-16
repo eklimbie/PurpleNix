@@ -9,7 +9,7 @@
   imports = [
     ./appsCoreCLI.nix
     #./bootloader.nix
-    ./firewall.nix
+    ./network.nix
     ./l18n.nix
     ./nixOSOptimisation.nix
     ./secureDNS.nix

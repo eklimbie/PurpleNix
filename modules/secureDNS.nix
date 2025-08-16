@@ -13,17 +13,13 @@
   };
 
   config = {
-    
-    ##########
-    ## Network Set-up
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-    # Enable networking
-    networking.networkmanager.enable = true;
-
+    #########
     ## Enable Encrypted DNS
+
+    # Ensure NetworkManager doesn't override DNS settings
+    networking.networkmanager.dns = "systemd-resolved";
+
     # Enable systemd-resolved for DNS management
     services.resolved = {
       enable = true;
@@ -41,9 +37,6 @@
         # Domains=~. local
       '';
     };
-
-    # Ensure NetworkManager doesn't override DNS settings
-    networking.networkmanager.dns = "systemd-resolved";
 
   };
 }

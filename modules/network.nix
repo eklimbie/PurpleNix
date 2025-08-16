@@ -15,6 +15,26 @@
   config = {
 
     ##########
+    ## Network Set-up
+    # Configure network proxy if necessary
+    # networking.proxy.default = "http://user:password@proxy:port/";
+    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+    # Enable networking
+    networking.networkmanager.enable = true;
+
+    # Enable mDNS for .local domain resolution
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true; # Enable mDNS resolution via NSS
+      publish = {
+        enable = true;
+        addresses = true;
+        domain = true;
+      };
+    };
+
+    ##########
     ## Firewall set-up
     # Enable the firewall
     networking.firewall = {
@@ -56,17 +76,6 @@
       #   # iptables -A nixos-fw -p tcp --dport 139 -j nixos-fw-accept
       #   # iptables -A nixos-fw -p tcp --dport 445 -j nixos-fw-accept
       # '';
-    };
-
-    # Enable mDNS for .local domain resolution
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true; # Enable mDNS resolution via NSS
-      publish = {
-        enable = true;
-        addresses = true;
-        domain = true;
-      };
     };
 
   };
