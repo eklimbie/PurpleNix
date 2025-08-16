@@ -6,7 +6,7 @@
   ...
 }:
 let
-  flakePath = "/etc/nixos#";
+  flakePath = "/home/ewout/GitHub/PurpleNix#";
 in
 {
   imports = [
