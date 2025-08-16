@@ -32,7 +32,7 @@
       # CLI Applications and other tools
       btrfs-progs
       dconf2nix
-      geekbench # Unfree is not correctly passed from the flake file
+      geekbench
       nano
       p7zip
       pciutils # To get informaion about pci devices

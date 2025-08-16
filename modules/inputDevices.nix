@@ -1,7 +1,7 @@
 {
   # config,
   # lib,
-  # pkgs,
+  pkgs,
   # pkgsUnstable,
   ...
 }:
@@ -29,16 +29,22 @@
     # Enable touchpad support (enabled default in most desktopManager).
     services.libinput.enable = true;
 
+    hardware.logitech.wireless = {
+      enable = true;
+      enableGraphical = true;
+    };
+
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
-    # environment.systemPackages = with pkgs; [
-# 
-    #   piper
-    #   # pkgsUnstable.piper
-    #   libratbag
-    #   # pkgsUnstable.libratbag
-# 
-    # ];
+    environment.systemPackages = with pkgs; [
+
+      # piper
+      # pkgsUnstable.piper
+      # libratbag
+      # pkgsUnstable.libratbag
+      solaar
+
+    ];
 
     ##########
     ## List services that you want to enable:
