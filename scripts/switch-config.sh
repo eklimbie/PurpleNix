@@ -37,7 +37,7 @@ sudo cp -r ${repopath}/* /etc/nixos/
 
 ## Add updated config to GitHub repository
 echo "Committing the updated configuration to the repository..."
-git add ${repopath}/*.nix ${repopath}/hosts/* ${repopath}/modules/* ${repopath}/home-manager/*
+git add ${repopath}/*.lock ${repopath}/*.nix ${repopath}/hosts/* ${repopath}/modules/* ${repopath}/home-manager/*
 git commit -m "Updated your NixOS config bringing ${machine} to generation ${generation}"
 echo "Don't forget to push your changes with \"git push\"!"
 

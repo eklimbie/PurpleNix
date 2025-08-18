@@ -61,7 +61,7 @@
       google-chrome
       gparted
       handbrake
-      high-tide
+      pkgsUnstable.high-tide
       impression
       jitsi-meet-electron
       pkgsUnstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
@@ -79,6 +79,7 @@
       sound-juicer
       soundconverter
       showtime
+      switcheroo
       todoist-electron
       tor-browser
       typora

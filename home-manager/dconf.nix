@@ -84,6 +84,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
         "obsidian.desktop"
         "signal.desktop"
         "io.github.nokse22.HighTide.desktop"
+        "io.github.nokse22.high-tide.desktop"
         "code.desktop"
         "org.gnome.Console.desktop"
         "org.gnome.Nautilus.desktop"
