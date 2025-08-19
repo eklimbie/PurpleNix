@@ -108,6 +108,8 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
     };
 
     "org/gnome/shell/extensions/vitals" = {
+      battery-slot = 1;
+      fixed-widths = false;
       hot-sensors = [
         "_processor_usage_"
         "_memory_usage_"
@@ -115,8 +117,13 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
         "__network-rx_max__"
       ];
       icon-style = 1;
+      include-static-gpu-info = false;
       memory-measurement = 0;
       menu-centered = false;
+      monitor-cmd = "resources";
+      show-battery = true;
+      show-gpu = true;
+      show-system = true;
       storage-measurement = 0;
       storage-path = "/home";
     };
