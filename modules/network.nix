@@ -23,6 +23,13 @@
     # Enable networking
     networking.networkmanager.enable = true;
 
+    # Set-up some wifi options increasing privacy and powersaving
+    networking.networkmanager.wifi = {
+      macAddress = "stable-ssid";
+      powersave = true;
+      scanRandMacAddress = true;
+    };
+
     # Enable mDNS for .local domain resolution
     services.avahi = {
       enable = true;

@@ -1,7 +1,7 @@
 {
   # config,
   # lib,
-  # pkgs,
+  pkgs,
   # pkgsUnstable,
   ...
 }:
@@ -32,12 +32,27 @@ in
       randomizedDelaySec = "2h";
       flags = [
         # Update the lock file like `nix flake update` would:
-        "--recreate-lock-file"
+        # "--recreate-lock-file"
         # Commit the updated lock file (requires the path to be a git repo):
-        # "--commit-lock-file"
+        "--commit-lock-file"
         # Quality-of-life:
         "--print-build-logs"
       ];
+    };
+
+    # Ensure the upgrade service waits for network-online
+    systemd.services.nixos-upgrade = {
+      # If you’re on NetworkManager, actively wait up to 30s for connectivity:
+      # nm-online exits 0 when the network is considered "online".
+      preStart = "${pkgs.networkmanager}/bin/nm-online -q -t 30";
+    };
+
+    # Mark the flake file as safe for root as it's in a repo not owned by root
+    programs.git = {
+      enable = true;
+      config = {
+        safe.directory = [ flakePath ];
+      };
     };
 
     # This setting will de-duplicate the nix store periodically, saving space
