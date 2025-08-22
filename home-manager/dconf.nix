@@ -77,7 +77,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       ];
       favorite-apps = [
         "firefox.desktop"
-        # "io.gitlab.news_flash.NewsFlash.desktop"
+        "io.gitlab.news_flash.NewsFlash.desktop"
         "org.gnome.Geary.desktop"
         "org.gnome.Calendar.desktop"
         "todoist.desktop"

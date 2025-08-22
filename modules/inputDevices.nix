@@ -5,6 +5,9 @@
   # pkgsUnstable,
   ...
 }:
+let
+  user = "ewout";
+in
 {
   imports = [
   ];
@@ -29,6 +32,13 @@
     # Enable touchpad support (enabled default in most desktopManager).
     services.libinput.enable = true;
 
+    # Enable support for Razer devices
+    hardware.openrazer = {
+      enable = true;
+      users = [ user ];
+    };
+
+    # Enable support for Logitechl devices
     hardware.logitech.wireless = {
       enable = true;
       enableGraphical = true;
@@ -38,24 +48,49 @@
     # You can use https://search.nixos.org/ to find more packages (and options).
     environment.systemPackages = with pkgs; [
 
-      # piper
-      # pkgsUnstable.piper
-      # libratbag
-      # pkgsUnstable.libratbag
-      solaar
+      polychromatic # Configure Razer devices
+      keyd # Flexible keyboard & mouse button remapper
+      solaar # Configure logitech devices
 
     ];
 
     ##########
     ## List services that you want to enable:
 
-    #services.ratbagd = {
-    #  enable = true;
-    #  package = pkgsUnstable.libratbag;
-    #};
-
-    # Enable Input-remapper to easily change the mapping of your input device buttons
-    services.input-remapper.enable = true;
+    # Set-up remapping of mouse buttons
+    services.keyd = {
+      enable = true;
+      # Fix for all Keyboards:
+      keyboards = {
+        default = {
+          ids = [ "*" ];
+          settings = {
+            main = {
+              # Remap capslock to another control key when held, and and escape key when tappen
+              capslock = "overload(control, esc)";
+            };
+          };
+        };
+        #
+        mouseDAv3Pro = {
+          ids = [ "1532:00b7" ];
+          settings = {
+            main = {
+              mouse1 = "leftmeta";
+            };
+          };
+        };
+        # Button mapping for Logitech G705
+        # mouseG705 = {
+        #   ids = [ "1ea7:0907" ];
+        #   settings = {
+        #     main = {
+        #       mouse1 = "leftmeta";
+        #     };
+        #   };
+        # };
+      };
+    };
 
   };
 }

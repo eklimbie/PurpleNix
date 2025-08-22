@@ -36,7 +36,8 @@
         '';
       };
     };
-    ## Improve (font)redering for Electron apps by forcing wayland
+
+    # Improve (font)redering for Electron apps by forcing wayland
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
