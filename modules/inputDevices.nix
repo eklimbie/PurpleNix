@@ -60,18 +60,18 @@ in
     # Set-up remapping of mouse buttons
     services.keyd = {
       enable = true;
-      # Fix for all Keyboards:
+      # Caps-lock fix for all Keyboards:
       keyboards = {
         default = {
           ids = [ "*" ];
           settings = {
             main = {
-              # Remap capslock to another control key when held, and and escape key when tappen
+              # Remap capslock to another control key when held, and an escape key when tapped
               capslock = "overload(control, esc)";
             };
           };
         };
-        #
+        # Button mapping for Razer DeathAdder v3 Pro
         mouseDAv3Pro = {
           ids = [ "1532:00b7" ];
           settings = {
@@ -81,16 +81,18 @@ in
           };
         };
         # Button mapping for Logitech G705
-        # mouseG705 = {
-        #   ids = [ "1ea7:0907" ];
-        #   settings = {
-        #     main = {
-        #       mouse1 = "leftmeta";
-        #     };
-        #   };
-        # };
+        mouseG705 = {
+          ids = [
+            "046d:c547" # USB Dongle
+            "046d:b02e" # Bluetooth
+          ];
+          settings = {
+            main = {
+              mouse1 = "leftmeta";
+            };
+          };
+        };
       };
     };
-
   };
 }

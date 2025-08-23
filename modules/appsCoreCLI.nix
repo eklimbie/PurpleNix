@@ -24,6 +24,18 @@
     programs.git.enable = true;
     programs.htop.enable = true;
     programs.nano.enable = true;
+    # programs.zsh = {
+    #   enable = true;
+    #   enableCompletion = true;
+    #   autosuggestions.enable = true;
+    #   syntaxHighlighting.enable = true;
+    #   setOptions = [
+    #     "HIST_IGNORE_ALL_DUPS"
+    #   ];
+    # };
+
+    # Set zsh as the default for users that don't explicitly set another shell
+    # users.defaultUserShell = pkgs.zsh;
 
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
@@ -40,6 +52,7 @@
       speedtest-cli
       tpm2-tools # For enrolling and managing TPM keys
       tpm2-tss # TPM Software Stack
+      tree
       usbutils # To get information about usb devices
       wget
     ];
@@ -49,6 +62,6 @@
 
     # Enable the Linux fwupd service
     services.fwupd.enable = true;
-  
+
   };
 }
