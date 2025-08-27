@@ -44,6 +44,7 @@
 
       # GUI Applications
       calibre
+      darktable
       digikam
       dconf-editor
       ente-desktop
@@ -74,6 +75,7 @@
       pika-backup
       plex-desktop
       protonvpn-gui
+      rawtherapee
       resources
       signal-desktop
       smile # Emoji pciker for Gnome

@@ -46,6 +46,7 @@
       dconf2nix
       geekbench
       nano
+      ncdu
       p7zip
       pciutils # To get informaion about pci devices
       powertop
@@ -63,5 +64,12 @@
     # Enable the Linux fwupd service
     services.fwupd.enable = true;
 
+    ########
+    ## Set default options for built-in tools
+
+    # Config ncdu to use colors
+    environment.etc."ncdu.conf".text = ''
+      --color dark
+    '';
   };
 }
