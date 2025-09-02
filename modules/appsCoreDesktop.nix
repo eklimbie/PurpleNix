@@ -27,6 +27,8 @@
 
       # CLI Applications and other tools
       borgbackup
+      exiftool
+      ffmpeg-full
       hunspell
       hunspellDicts.de_DE
       hunspellDicts.en_GB-large
@@ -77,6 +79,7 @@
       protonvpn-gui
       rawtherapee
       resources
+      rhythmbox
       signal-desktop
       smile # Emoji pciker for Gnome
       sound-juicer
