@@ -70,7 +70,7 @@
       pkgsUnstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
       libreoffice-fresh
       makemkv
-      newsflash
+      # newsflash
       obsidian
       parabolic
       picard
