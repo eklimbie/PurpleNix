@@ -46,8 +46,6 @@
 
       # GUI Applications
       calibre
-      darktable
-      digikam
       dconf-editor
       ente-desktop
       eyedropper
@@ -67,19 +65,18 @@
       pkgsUnstable.high-tide
       impression
       jitsi-meet-electron
-      pkgsUnstable.joplin-desktop # fixes wayland issue on the 25.05 stable channel
       libreoffice-fresh
       makemkv
-      # newsflash
       obsidian
+      papers
       parabolic
       picard
       pika-backup
       plex-desktop
       protonvpn-gui
-      rawtherapee
       resources
       rhythmbox
+      roomeqwizard
       signal-desktop
       smile # Emoji pciker for Gnome
       sound-juicer
@@ -105,6 +102,10 @@
       enable = true;
       # options = [ ];
     };
+
+    # Enable MakeMKV to see DVD/Blu-ray drives
+    boot.kernelModules = [ "sg" ]; # Load the scsi driver that MakeMKV relies on
+    # services.udev.packages = [ pkgs.makemkv ]; # Load the MakeMKV udev rules, not needed
 
     ##########
     ## Firewall set-up

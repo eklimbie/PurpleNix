@@ -26,6 +26,7 @@
         "networkmanager" # Default
         # "tss" # Gives access to TPM devices without sudo
         "wheel" # Allows sudo
+        "cdrom" # Allows all apps access to the USB-drive
       ];
     };
 
