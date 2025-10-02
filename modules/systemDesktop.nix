@@ -15,8 +15,6 @@
     ./onePassword.nix
     ./sound.nix
     ./user.nix
-
-
   ];
 
   options = {

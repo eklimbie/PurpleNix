@@ -102,6 +102,24 @@ in
   '';
 
   ##########
+  ## Set-up an ssh connection for back-up use
+  programs.ssh.matchBlocks = {
+    "homeserver-backup" = {
+      hostname = "purpleserver.local";
+      user = "borg";
+      port = 22; # adjust if needed
+      identityFile = [ "~/.ssh/id_ed25519_pika" ];
+      identitiesOnly = true; # ignore all other keys/agents
+      extraOptions = {
+        "IdentityAgent" = "none"; # hard-disable agent use (prevents 1Password)
+        "ServerAliveInterval" = "30";
+        "ServerAliveCountMax" = "3";
+        "StrictHostKeyChecking" = "accept-new";
+      };
+    };
+  };
+
+  ##########
   ## User Systemd Services
   systemd.user.services = {
     # Ensure that 1Password is always loaded.
