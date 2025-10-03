@@ -23,10 +23,10 @@
 
   # On NixOS 25.05 the fingerprintreader disappears after suspend. This module
   # disables sleep for the goodix fingerprint reader to fix that.
-  services.udev.extraRules = ''
-    # Keep Goodix (27c6) awake so it survives suspend/resume reliably
-    ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="27c6", TEST=="power/control", ATTR{power/control}="on"
-  '';
+  # services.udev.extraRules = ''
+  #   # Keep Goodix (27c6) awake so it survives suspend/resume reliably
+  #   ACTION=="add|change", SUBSYSTEM=="usb", ATTR{idVendor}=="27c6", TEST=="power/control", ATTR{power/control}="on"
+  # '';
 
   ## Enable power-optimisations
   # Basic config

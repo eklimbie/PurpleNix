@@ -49,7 +49,7 @@
       dconf-editor
       ente-desktop
       eyedropper
-      foliate
+      freecad-wayland
       gimp3-with-plugins
       github-desktop
       gnomeExtensions.caffeine
@@ -69,7 +69,6 @@
       makemkv
       obsidian
       papers
-      parabolic
       picard
       pika-backup
       plex-desktop
@@ -93,6 +92,31 @@
       zapzap
       zoom-us
     ];
+
+    ##########
+    ## Enable declarative install of Flatpaks
+    # Enable integration of flatpaks with the system
+    xdg.portal.enable = true;
+
+    # Install & Configure Flatpak
+    services.flatpak = {
+      enable = true;
+      # Remove any flatpak not installed declaratively
+      uninstallUnmanaged = true;
+      update.auto = {
+        enable = true;
+        onCalendar = "daily";
+      };
+
+      # Flatpaks to install
+      packages = [
+        {
+          appId = "com.bambulab.BambuStudio";
+          origin = "flathub";
+        }
+        # add more app IDs here
+      ];
+    };
 
     ##########
     ## List services that you want to enable:

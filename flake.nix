@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs =
@@ -75,6 +76,7 @@
                 extraSpecialArgs = { inherit inputs; };
               };
             }
+            inputs.nix-flatpak.nixosModules.nix-flatpak
           ];
         };
       };
