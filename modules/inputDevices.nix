@@ -73,7 +73,10 @@ in
         };
         # Button mapping for Razer DeathAdder v3 Pro
         mouseDAv3Pro = {
-          ids = [ "1532:00b7" ];
+          ids = [
+            "1532:00b7" # USB Dongle
+            "1532:00b6" # Wired connection
+          ];
           settings = {
             main = {
               mouse1 = "leftmeta";

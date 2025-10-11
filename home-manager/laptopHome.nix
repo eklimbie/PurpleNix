@@ -105,7 +105,8 @@ in
   ## Set-up an ssh connection for back-up use
   programs.ssh.matchBlocks = {
     "homeserver-backup" = {
-      hostname = "purpleserver.local";
+      # Use a Static IP, to make sure it works when avahi isn't up yet.
+      hostname = "192.168.1.157";
       user = "borg";
       port = 22; # adjust if needed
       identityFile = [ "~/.ssh/id_ed25519_pika" ];

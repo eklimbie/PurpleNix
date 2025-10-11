@@ -17,6 +17,7 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       use-localized-tags = true;
       tags-locale = "nl";
     };
+
     "org/gnome/TextEditor" = {
       highlight-current-line = true;
       show-line-numbers = true;
@@ -34,6 +35,11 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
 
     "org/gnome/desktop/peripherals/mouse" = {
       accel-profile = "flat";
+    };
+
+    "org/gnome/desktop/search-providers" = {
+      disabled = [ "org.gnome.Software.desktop" ];
+      enabled = [ "org.gnome.Weather.desktop" ];
     };
 
     "org/gnome/gnome-system-monitor" = {

@@ -66,8 +66,10 @@
       impression
       jitsi-meet-electron
       libreoffice-fresh
+      lmstudio
       makemkv
       obsidian
+      orca-slicer
       papers
       picard
       pika-backup
@@ -112,6 +114,10 @@
       packages = [
         {
           appId = "com.bambulab.BambuStudio";
+          origin = "flathub";
+        }
+        {
+          appId = "com.fastmail.Fastmail";
           origin = "flathub";
         }
         # add more app IDs here
