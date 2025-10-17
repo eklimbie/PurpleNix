@@ -27,8 +27,12 @@
 
       # CLI Applications and other tools
       borgbackup
+      cdparanoia # Accurate CD Ripping
+      cdrdao # CD ripping TOC/Details
       exiftool
+      flac
       ffmpeg-full
+      graphviz # Adds Support for graphing dependencies in FreeCAD
       hunspell
       hunspellDicts.de_DE
       hunspellDicts.en_GB-large
@@ -42,13 +46,13 @@
       rsgain
       speedtest-cli
       texliveFull
+      whipper # CD ripping tool
       yt-dlp
 
       # GUI Applications
       calibre
       dconf-editor
       ente-desktop
-      eyedropper
       freecad-wayland
       gimp3-with-plugins
       github-desktop
@@ -64,9 +68,9 @@
       handbrake
       pkgsUnstable.high-tide
       impression
+      inkscape-with-extensions
       jitsi-meet-electron
       libreoffice-fresh
-      lmstudio
       makemkv
       obsidian
       orca-slicer
@@ -75,13 +79,12 @@
       pika-backup
       plex-desktop
       protonvpn-gui
+      quodlibet-full
       resources
       rhythmbox
       roomeqwizard
       signal-desktop
       smile # Emoji pciker for Gnome
-      sound-juicer
-      soundconverter
       showtime
       switcheroo
       todoist-electron
@@ -148,6 +151,5 @@
         51047 # Transmission
       ];
     };
-
   };
 }

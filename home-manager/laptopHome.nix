@@ -23,20 +23,88 @@ in
   home.packages = with pkgs; [
     _1password-cli
     _1password-gui
+    yt-dlp
   ];
 
   ##########
-  ## Yubikey Registration
-  # Create the U2F keys file and use xdg.configFile for XDG compliance
-  # This automatically creates ~/.config/Yubico/u2f_keys
-  xdg.configFile."Yubico/u2f_keys".text = ''
-    # Primary - Blue Yubikey 5 NFC UCB-C
-    ewout:UnincKF8YkDJBPTV3BfBOAFoMlZ4trK5KiEdfEqZWT5V+crFYqseH+t+ZihhYJXHVpETOoLbkncGMddw+r/0jQ==,kRL2uY22j1VfZNOQREh4ika6hj35oJG4GtD1A0o2wKk5gPhZjY0oeIyC2uq5NVZOfxofEk9Csvzi6BWUEx2bOg==,es256,+presence
-    # Secondary Yubikeys
-    # Add them by inserting the yubikey you want to add and executing
-    # "pamu2fcfg" in the command line. Add the output below. 
-    # See https://nixos.wiki/wiki/Yubikey for Detailed instructions.
+  ## App Installation
+  # yt-dlp config
+  programs.yt-dlp.enable = true;
+  programs.yt-dlp.settings = {
+    path = "~/Downloads";
+    cookies-from-browser = "firefox";
+    # Youtube is cracking down on yt-dlp, some settings are needed to enable
+    # download of all formats.
+    # https://github.com/yt-dlp/yt-dlp/issues/12482
+    # https://github.com/yt-dlp/yt-dlp/wiki/PO-Token-Guide
+    extractor-args = "youtube:player-client=default,mweb;po_token=mweb.gvs+MnRtN_J22ERVHG0P67HmTxXX_WHgCXHSC_jsphCkKlXUB4ybwtFnYpAOas9yN_-FbkDwBD0D7eGvPUpOfiiCt9sAdo-pK7721oiWRC60Nb4cWyOdQXZx0FQToJZpYxFKZDJPZ4Ufte23Ag1Wwh7LvTDzTqfVsw==";
+    embed-subs = true;
+    embed-thumbnail = true;
+    embed-metadata = true;
+    embed-chapters = true;
+  };
+
+  ## CD ripping config for whipper
+  # Alias in terminal
+  home.shellAliases = {
+    whipper-rip = "whipper cd rip --prompt";
+  };
+  # Gnome Shortcut
+  xdg.desktopEntries."whipper-rip" = {
+    name = "Whipper (Prompt)";
+    exec = "whipper cd rip --prompt";
+    icon = "media-optical";
+    type = "Application";
+    terminal = true;
+    categories = [
+      "AudioVideo"
+      "Audio"
+    ];
+  };
+
+  # Whipper config
+  xdg.configFile."whipper/whipper.conf" = {
+  text = ''
+    # This config is managed by Home Manager. Manual edits will be overwritten!
+  
+    [main]
+    # Make paths portable (optional but handy)
+    path_filter_posix = True	
+    path_filter_fat = True
+  
+    [whipper]
+    # Eject policy after rip (never | failure | success | always)
+    eject = success
+  
+    [whipper.cd.rip]
+    # AccurateRip is enabled by default. Only set this if you want to allow ripping
+    # unknown discs (not found on MusicBrainz) instead of aborting.
+    unknown = True
+  
+    # File naming (see 'whipper cd rip --help' for variables)
+    # Note: the format char '%' must be escaped as '%%'
+    output_directory = ~/Music/Rips
+    disc_template  = %%A/%%d (%%y)/%%A - %%d (%%y)
+    track_template = %%A/%%d (%%y)/%%t - %%n
+  
+    # FLAC encoding
+    # Whipper uses the system 'flac' encoder; set compression 0..8
+    flac_compression_level = 8
+  
+    # Fetch cover art and embed into FLACs (requires internet)
+    # choices: file | embed | complete
+    cover_art = complete
+  
+    [drive:PIONEER%20%3ABD-RW%20%20%20BDR-XD05%3A3.10]
+    vendor = PIONEER
+    model = BD-RW   BDR-XD05
+    release = 3.10
+    read_offset = 667
+    defeats_cache = True
   '';
+  # Force overwrite existing config
+  force = true;
+  };
 
   ##########
   ## 1Password Set-up
@@ -107,6 +175,7 @@ in
     "homeserver-backup" = {
       # Use a Static IP, to make sure it works when avahi isn't up yet.
       hostname = "192.168.1.157";
+      #hostname = "purpleserver.local";
       user = "borg";
       port = 22; # adjust if needed
       identityFile = [ "~/.ssh/id_ed25519_pika" ];
@@ -144,21 +213,18 @@ in
     };
   };
 
-  # yt-dlp config
-  programs.yt-dlp.enable = true;
-  programs.yt-dlp.settings = {
-    path = "~/Downloads";
-    cookies-from-browser = "firefox";
-    # Youtube is cracking down on yt-dlp, some settings are needed to enable
-    # download of all formats.
-    # https://github.com/yt-dlp/yt-dlp/issues/12482
-    # https://github.com/yt-dlp/yt-dlp/wiki/PO-Token-Guide
-    extractor-args = "youtube:player-client=default,mweb;po_token=mweb.gvs+MnRtN_J22ERVHG0P67HmTxXX_WHgCXHSC_jsphCkKlXUB4ybwtFnYpAOas9yN_-FbkDwBD0D7eGvPUpOfiiCt9sAdo-pK7721oiWRC60Nb4cWyOdQXZx0FQToJZpYxFKZDJPZ4Ufte23Ag1Wwh7LvTDzTqfVsw==";
-    embed-subs = true;
-    embed-thumbnail = true;
-    embed-metadata = true;
-    embed-chapters = true;
-  };
+  ##########
+  ## Yubikey Registration
+  # Create the U2F keys file and use xdg.configFile for XDG compliance
+  # This automatically creates ~/.config/Yubico/u2f_keys
+  xdg.configFile."Yubico/u2f_keys".text = ''
+    # Primary - Blue Yubikey 5 NFC UCB-C
+    ewout:UnincKF8YkDJBPTV3BfBOAFoMlZ4trK5KiEdfEqZWT5V+crFYqseH+t+ZihhYJXHVpETOoLbkncGMddw+r/0jQ==,kRL2uY22j1VfZNOQREh4ika6hj35oJG4GtD1A0o2wKk5gPhZjY0oeIyC2uq5NVZOfxofEk9Csvzi6BWUEx2bOg==,es256,+presence
+    # Secondary Yubikeys
+    # Add them by inserting the yubikey you want to add and executing
+    # "pamu2fcfg" in the command line. Add the output below. 
+    # See https://nixos.wiki/wiki/Yubikey for Detailed instructions.
+  '';
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release

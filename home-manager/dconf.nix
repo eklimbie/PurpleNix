@@ -119,8 +119,6 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
       hot-sensors = [
         "_processor_usage_"
         "_memory_usage_"
-        "_system_load_5m_"
-        "__network-rx_max__"
       ];
       icon-style = 1;
       include-static-gpu-info = false;

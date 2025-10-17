@@ -45,6 +45,5 @@
 
     # Disable GPG agent SSH support (conflicts with 1Password)
     programs.gnupg.agent.enableSSHSupport = false;
-
   };
 }
