@@ -89,10 +89,12 @@ with lib.hm.gvariant; # Removes the need to use this prefix everytime
         "1password.desktop"
         "obsidian.desktop"
         "signal.desktop"
-        "io.github.nokse22.HighTide.desktop"
         "io.github.nokse22.high-tide.desktop"
+        "io.github.quodlibet.QuodLibet.desktop"
         "code.desktop"
         "org.gnome.Console.desktop"
+        "com.bambulab.BambuStudio.desktop"
+        "org.freecad.FreeCAD.desktop"
         "org.gnome.Nautilus.desktop"
       ];
       welcome-dialog-last-shown-version = "48.1";

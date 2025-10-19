@@ -20,6 +20,7 @@
     # Install apps via modules
     programs.chromium.enable = true;
     programs.firefox.enable = true;
+    programs.steam.enable = true;
 
     # List packages installed in system profile.
     # You can use https://search.nixos.org/ to find more packages (and options).
@@ -81,7 +82,6 @@
       protonvpn-gui
       quodlibet-full
       resources
-      rhythmbox
       roomeqwizard
       signal-desktop
       smile # Emoji pciker for Gnome
@@ -129,7 +129,7 @@
 
     ##########
     ## List services that you want to enable:
-
+    
     # Enable Jotta
     services.jotta-cli = {
       enable = true;

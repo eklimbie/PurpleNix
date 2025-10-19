@@ -25,16 +25,19 @@
       enable = true;
       dnsovertls = "true";
       dnssec = "false";
+      # Allow local resolution to bypass encrypted DNS
+      domains = [
+        "~."
+        "local"
+      ];
 
-      # Configure dns0.eu with .local domain resolution
+      # Configure quad9 with .local domain resolution
       extraConfig = ''
         [Resolve]
-        DNS=193.110.81.0#dns0.eu
-        DNS=2a0f:fc80::#dns0.eu
-        DNS=185.253.5.0#dns0.eu
-        DNS=2a0f:fc81::#dns0.eu
-        # Allow local resolution to bypass encrypted DNS
-        # Domains=~. local
+        DNS=9.9.9.9#quad9.net
+        DNS=2620:fe::fe#quad9.net
+        DNS=149.112.112.112#quad9.net
+        DNS=2620:fe::9#quad9.net
       '';
     };
 
