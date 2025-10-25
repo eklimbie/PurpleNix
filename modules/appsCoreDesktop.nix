@@ -54,6 +54,7 @@
       calibre
       dconf-editor
       ente-desktop
+      eyedropper
       freecad-wayland
       gimp3-with-plugins
       github-desktop
