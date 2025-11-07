@@ -38,7 +38,7 @@ in
       users = [ user ];
     };
 
-    # Enable support for Logitechl devices
+    # Enable support for Logitech devices
     hardware.logitech.wireless = {
       enable = true;
       enableGraphical = true;
